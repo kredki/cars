@@ -19,22 +19,22 @@ public class CarEntity implements Serializable {
     private int engineCapacity;
     @Column(name = "POWER", nullable = false)
     private int power;
-    @Column(name = "MILAGE", nullable = false)
-    private int milage;
+    @Column(name = "MILEAGE", nullable = false)
+    private int mileage;
     @Column(name = "CAR_TYPE", nullable = false, length = 50)
-    private int carType;
+    private String carType;
     @Column(name = "COLOR", nullable = false, length = 50)
-    private int color;
+    private String color;
 
     public CarEntity() {
     }
 
-    public CarEntity(String brandName, int productionYear, int engineCapacity, int power, int milage, int carType, int color) {
+    public CarEntity(String brandName, int productionYear, int engineCapacity, int power, int mileage, String carType, String color) {
         this.brandName = brandName;
         this.productionYear = productionYear;
         this.engineCapacity = engineCapacity;
         this.power = power;
-        this.milage = milage;
+        this.mileage = mileage;
         this.carType = carType;
         this.color = color;
     }
@@ -79,27 +79,27 @@ public class CarEntity implements Serializable {
         this.power = power;
     }
 
-    public int getMilage() {
-        return milage;
+    public int getMileage() {
+        return mileage;
     }
 
-    public void setMilage(int milage) {
-        this.milage = milage;
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
     }
 
-    public int getCarType() {
+    public String getCarType() {
         return carType;
     }
 
-    public void setCarType(int carType) {
+    public void setCarType(String carType) {
         this.carType = carType;
     }
 
-    public int getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(int color) {
+    public void setColor(String color) {
         this.color = color;
     }
 }
