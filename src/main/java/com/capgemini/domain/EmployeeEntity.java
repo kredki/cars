@@ -3,6 +3,8 @@ package com.capgemini.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "EMPLOYEE")
@@ -19,14 +21,25 @@ public class EmployeeEntity implements Serializable {
     @Column(name = "BIRTH_DATE", nullable = false)
     private Date birthDate;
 
-//    position_id INT NOT NULL,
-//    outpost_id INT NOT NULL,
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "OUTPOST_ID")
+    private OutpostEntity outpost;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "POSITION_ID", nullable = false)
+    private PositionEntity position;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "CARETAKER",
+            joinColumns = {@JoinColumn(name = "EMPLOYEE_ID", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "CAR_ID", nullable = false, updatable = false)}
+    )
+    private Set<CarEntity> cars = new HashSet<>();
 
     public EmployeeEntity() {
     }
 
-    public EmployeeEntity(String firstName, String lastName, Date birthDate) {
+    public EmployeeEntity(String firstNŁame, String lastName, Date birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -62,5 +75,29 @@ public class EmployeeEntity implements Serializable {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public OutpostEntity getOutpost() {
+        return outpost;
+    }
+
+    public void setOutpost(OutpostEntity outpost) {
+        this.outpost = outpost;
+    }
+
+    public PositionEntity getPosition() {
+        return position;
+    }
+
+    public void setPosition(PositionEntity position) {
+        this.position = position;
+    }
+
+    public Set<CarEntity> getCars() {
+        return cars;
+    }
+
+    public void setCars(Set<CarEntity> cars) {
+        this.cars = cars;
     }
 }
