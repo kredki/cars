@@ -39,6 +39,14 @@ public class OutpostEntity implements Serializable {
         this.endRentals = endRentals;
     }
 
+    public OutpostEntity(String addres, String contactData) {
+        this.addres = addres;
+        this.contactData = contactData;
+        this.employees = new HashSet<>();
+        this.startRentals = new HashSet<>();
+        this.endRentals = new HashSet<>();
+    }
+
     public long getId() {
         return id;
     }

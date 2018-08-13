@@ -1,5 +1,7 @@
 package com.capgemini.domain;
 
+import org.springframework.util.CollectionUtils;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -112,5 +114,86 @@ public class CarEntity implements Serializable {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public static class CarEntityBuilder {
+        private String brandName;
+        private int productionYear;
+        private int engineCapacity;
+        private int power;
+        private int mileage;
+        private String carType;
+        private String color;
+        private Set<RentalEntity> rentals = new HashSet<>();
+        private Set<EmployeeEntity> employees = new HashSet<>();
+
+
+        public CarEntityBuilder() {
+            super();
+        }
+
+        public CarEntityBuilder withBrandName(String brandName) {
+            this.brandName = brandName;
+            return this;
+        }
+
+        public CarEntityBuilder withProductionYear(int productionYear) {
+            this.productionYear = productionYear;
+            return this;
+        }
+
+        public CarEntityBuilder withEngineCapacity(int engineCapacity) {
+            this.engineCapacity = engineCapacity;
+            return this;
+        }
+
+        public CarEntityBuilder withPower(int power) {
+            this.power = power;
+            return this;
+        }
+
+        public CarEntityBuilder withMileage(int mileage) {
+            this.mileage = mileage;
+            return this;
+        }
+
+        public CarEntityBuilder withCarType(String carType) {
+            this.carType = carType;
+            return this;
+        }
+
+        public CarEntityBuilder withRentals(Set<RentalEntity> rentals) {
+            this.rentals.addAll(rentals);
+            return this;
+        }
+
+        public CarEntityBuilder withRental(RentalEntity rental) {
+            this.rentals.add(rental);
+            return this;
+        }
+
+        public CarEntityBuilder withEmployees(Set<EmployeeEntity> employees) {
+            this.employees.addAll(employees);
+            return this;
+        }
+
+        public CarEntityBuilder withEmployee(EmployeeEntity employee) {
+            this.employees.add(employee);
+            return this;
+        }
+
+        public CarEntity build() {
+            //checkBeforeBuild();
+            return new CarEntity(brandName, productionYear, engineCapacity, power, mileage,
+            carType, color, rentals, employees);
+        }
+
+        private void checkBeforeBuild() {
+            if (brandName == null || productionYear == 0 || engineCapacity == 0 || power == 0 || mileage == 0
+                    || carType == null || color == null) {
+                throw new RuntimeException("Incorrect book to be created");
+            }
+
+        }
     }
 }

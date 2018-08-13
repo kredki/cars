@@ -49,6 +49,16 @@ public class EmployeeEntity implements Serializable {
         this.cars = cars;
     }
 
+    public EmployeeEntity(String firstName, String lastName, Date birthDate, OutpostEntity outpost,
+                          PositionEntity position) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.outpost = outpost;
+        this.position = position;
+        this.cars = new HashSet<>();
+    }
+
     public long getId() {
         return id;
     }

@@ -2,10 +2,12 @@ package com.capgemini.dao.impl;
 
 import com.capgemini.dao.CarDao;
 import com.capgemini.domain.CarEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Repository
 public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
     @Override
     public List<CarEntity> findCarByType(String type) {
@@ -29,5 +31,9 @@ public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
                 "select car from CarEntity car where :caretakerId member of car.employees", CarEntity.class);
         query.setParameter("caretakerId", caretakerId);
         return query.getResultList();
+    }
+
+    public void deleteAll() {
+        entityManager.createQuery("delete from CarEntity", CarEntity.class).executeUpdate();
     }
 }

@@ -27,6 +27,11 @@ public class PositionEntity implements Serializable {
         this.employees = employees;
     }
 
+    public PositionEntity(String name) {
+        this.name = name;
+        this.employees = new HashSet<>();
+    }
+
     public long getId() {
         return id;
     }
