@@ -21,11 +21,11 @@ public class EmployeeEntity implements Serializable {
     @Column(name = "BIRTH_DATE", nullable = false)
     private Date birthDate;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "OUTPOST_ID")
     private OutpostEntity outpost;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "POSITION_ID", nullable = false)
     private PositionEntity position;
 
@@ -39,10 +39,14 @@ public class EmployeeEntity implements Serializable {
     public EmployeeEntity() {
     }
 
-    public EmployeeEntity(String firstNŁame, String lastName, Date birthDate) {
+    public EmployeeEntity(String firstName, String lastName, Date birthDate, OutpostEntity outpost,
+                          PositionEntity position, Set<CarEntity> cars) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        this.outpost = outpost;
+        this.position = position;
+        this.cars = cars;
     }
 
     public long getId() {

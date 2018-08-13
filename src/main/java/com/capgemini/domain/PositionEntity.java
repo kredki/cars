@@ -2,6 +2,8 @@ package com.capgemini.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "POSITIONS")
@@ -14,12 +16,15 @@ public class PositionEntity implements Serializable {
     @Column(name = "NAME", nullable = false, length = 100)
     private String name;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "position")
+    private Set<EmployeeEntity> employees = new HashSet<>();
+
     public PositionEntity() {
     }
 
-    public PositionEntity(long id, String name) {
-        this.id = id;
+    public PositionEntity(String name, Set<EmployeeEntity> employees) {
         this.name = name;
+        this.employees = employees;
     }
 
     public long getId() {

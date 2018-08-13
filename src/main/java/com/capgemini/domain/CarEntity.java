@@ -2,6 +2,8 @@ package com.capgemini.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "CAR")
@@ -26,10 +28,17 @@ public class CarEntity implements Serializable {
     @Column(name = "COLOR", nullable = false, length = 50)
     private String color;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car")
+    private Set<RentalEntity> rentals = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "cars")
+    private Set<EmployeeEntity> employees = new HashSet<>();
+
     public CarEntity() {
     }
 
-    public CarEntity(String brandName, int productionYear, int engineCapacity, int power, int mileage, String carType, String color) {
+    public CarEntity(String brandName, int productionYear, int engineCapacity, int power, int mileage,
+                     String carType, String color, Set<RentalEntity> rentals, Set<EmployeeEntity> employees) {
         this.brandName = brandName;
         this.productionYear = productionYear;
         this.engineCapacity = engineCapacity;
@@ -37,6 +46,8 @@ public class CarEntity implements Serializable {
         this.mileage = mileage;
         this.carType = carType;
         this.color = color;
+        this.rentals = rentals;
+        this.employees = employees;
     }
 
     public long getId() {

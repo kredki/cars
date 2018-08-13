@@ -22,25 +22,20 @@ public class RentalEntity implements Serializable {
     @Column(name = "COST", nullable = false)
     private BigDecimal cost;
 
-//    car_id INT NOT NULL,
-//    client_id INT NOT NULL,
-//    outpost_id_start INT NOT NULL,
-//    outpost_id_end INT ,
-
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CAR_ID", nullable = false)
     private CarEntity car;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CLIENT_ID", nullable = false)
     private ClientEntity client;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "START_OUTPOST_ID", nullable = false)
     private OutpostEntity startOutpost;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "END_OUTPOST_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "END_OUTPOST_ID")
     private OutpostEntity endOutpost;
 
     public RentalEntity() {

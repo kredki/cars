@@ -3,6 +3,8 @@ package com.capgemini.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "CLIENT")
@@ -25,16 +27,21 @@ public class ClientEntity implements Serializable {
     @Column(name = "EMAIL", nullable = false, length = 254)
     private String email;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+    private Set<RentalEntity> rentals = new HashSet<>();
+
     public ClientEntity() {
     }
 
-    public ClientEntity(String firstName, String lastName, Date birthdate, String telephone, String cardNo, String email) {
+    public ClientEntity(String firstName, String lastName, Date birthdate, String telephone, String cardNo,
+                        String email, Set<RentalEntity> rentals) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
         this.telephone = telephone;
         this.cardNo = cardNo;
         this.email = email;
+        this.rentals = rentals;
     }
 
     public long getId() {
