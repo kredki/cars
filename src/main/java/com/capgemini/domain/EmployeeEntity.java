@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "EMPLOYEE")
+@Table(name = "EMPLOYEES")
 public class EmployeeEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

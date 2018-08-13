@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "RENTAL")
+@Table(name = "RENTALS")
 public class RentalEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "OUTPOST")
+@Table(name = "OUTPOSTS")
 public class OutpostEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
