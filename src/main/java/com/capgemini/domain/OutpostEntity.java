@@ -70,4 +70,14 @@ public class OutpostEntity implements Serializable {
     public void setContactData(String contactData) {
         this.contactData = contactData;
     }
+
+    public void addEmployee(EmployeeEntity employee) {
+        this.employees.add(employee);
+        employee.setOutpost(this);
+    }
+
+    public void removeEmployee(EmployeeEntity employee) {
+        this.employees.remove(employee);
+        employee.setOutpost(null);
+    }
 }

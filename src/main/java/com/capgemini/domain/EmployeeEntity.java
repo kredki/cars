@@ -114,4 +114,8 @@ public class EmployeeEntity implements Serializable {
     public void setCars(Set<CarEntity> cars) {
         this.cars = cars;
     }
+
+    public void addCar(CarEntity car) {
+        this.cars.add(car);
+    }
 }

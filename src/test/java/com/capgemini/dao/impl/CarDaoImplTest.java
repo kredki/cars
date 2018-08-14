@@ -102,7 +102,7 @@ public class CarDaoImplTest {
     }
 
     @Test
-    public void shouldReturnCarByCareTaker() {
+    public void shouldReturnCarByCaretaker() {
         //given
         long employeeId = employeeDao.findAll().get(0).getId();
 
