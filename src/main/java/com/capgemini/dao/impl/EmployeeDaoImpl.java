@@ -14,7 +14,7 @@ public class EmployeeDaoImpl extends AbstractDao<EmployeeEntity, Long> implement
     @Override
     public List<EmployeeEntity> findEmployeeByOutpost(long outpostId) {
         TypedQuery<EmployeeEntity> query = entityManager.createQuery(
-                "select e from EmployeeEntity e where :outpostId member of e.cars", EmployeeEntity.class);
+                "select e from EmployeeEntity e where :outpostId = outpost.id", EmployeeEntity.class);
         query.setParameter("outpostId", outpostId);
         return query.getResultList();
     }
@@ -22,9 +22,9 @@ public class EmployeeDaoImpl extends AbstractDao<EmployeeEntity, Long> implement
     @Override
     public List<EmployeeEntity> findCaretakerByOutpost(OutpostEntity outpost, CarEntity car) {
         TypedQuery<EmployeeEntity> query = entityManager.createQuery(
-                "select e from EmployeeEntity e where :outpost = e.outpost and :carId member of e.cars", EmployeeEntity.class);
+                "select e from EmployeeEntity e where :outpost = e.outpost and :car member of e.cars", EmployeeEntity.class);
         query.setParameter("outpost", outpost);
-        query.setParameter("carId", car.getId());
+        query.setParameter("car", car);
         return query.getResultList();
     }
 
