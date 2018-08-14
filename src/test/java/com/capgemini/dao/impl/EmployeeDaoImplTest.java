@@ -3,7 +3,6 @@ package com.capgemini.dao.impl;
 import com.capgemini.dao.CarDao;
 import com.capgemini.dao.OutpostDao;
 import com.capgemini.domain.*;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

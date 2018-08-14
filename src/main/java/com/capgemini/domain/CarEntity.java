@@ -1,7 +1,5 @@
 package com.capgemini.domain;
 
-import org.springframework.util.CollectionUtils;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
