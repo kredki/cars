@@ -13,8 +13,8 @@ public class OutpostEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "ADDRESS", nullable = false, length = 200)
-    private String addres;
+    @Embedded
+    private Address address;
     @Column(name = "CONTACT_DATA", nullable = false, length = 200)
     private String contactData;
 
@@ -30,17 +30,17 @@ public class OutpostEntity implements Serializable {
     public OutpostEntity() {
     }
 
-    public OutpostEntity(String addres, String contactData, Set<EmployeeEntity> employees,
+    public OutpostEntity(Address address, String contactData, Set<EmployeeEntity> employees,
                          Set<RentalEntity> startRentals, Set<RentalEntity> endRentals) {
-        this.addres = addres;
+        this.address = address;
         this.contactData = contactData;
         this.employees = employees;
         this.startRentals = startRentals;
         this.endRentals = endRentals;
     }
 
-    public OutpostEntity(String addres, String contactData) {
-        this.addres = addres;
+    public OutpostEntity(Address address, String contactData) {
+        this.address = address;
         this.contactData = contactData;
         this.employees = new HashSet<>();
         this.startRentals = new HashSet<>();
@@ -55,12 +55,12 @@ public class OutpostEntity implements Serializable {
         this.id = id;
     }
 
-    public String getAddres() {
-        return addres;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddres(String addres) {
-        this.addres = addres;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getContactData() {

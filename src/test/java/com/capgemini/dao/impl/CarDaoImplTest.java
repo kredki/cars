@@ -3,12 +3,10 @@ package com.capgemini.dao.impl;
 import com.capgemini.dao.EmployeeDao;
 import com.capgemini.domain.*;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
@@ -23,7 +21,6 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class CarDaoImplTest {
     @PersistenceContext
     private EntityManager entityManager;
@@ -41,7 +38,8 @@ public class CarDaoImplTest {
     @Before
     public void init() {
         position = new PositionEntity("Sprzedawca");
-        outpost = new OutpostEntity("address", "contactData");
+        Address address = new Address("street", "no", "city", "postal code");
+        outpost = new OutpostEntity(address, "contactData");
         employee = new EmployeeEntity("Jan", "Kowalski", new Date(), outpost,
                 position);
         car1 = new CarEntity.CarEntityBuilder().withBrandName("BMW").withCarType("Coupe")
