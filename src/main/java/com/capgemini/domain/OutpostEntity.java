@@ -18,13 +18,13 @@ public class OutpostEntity implements Serializable {
     @Column(name = "CONTACT_DATA", nullable = false, length = 200)
     private String contactData;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "outpost")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "outpost", cascade = CascadeType.ALL)
     private Set<EmployeeEntity> employees = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "startOutpost")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "startOutpost", cascade = CascadeType.ALL)
     private Set<RentalEntity> startRentals = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "endOutpost")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "endOutpost", cascade = CascadeType.ALL)
     private Set<RentalEntity> endRentals = new HashSet<>();
 
     public OutpostEntity() {

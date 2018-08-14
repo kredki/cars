@@ -1,5 +1,7 @@
 package com.capgemini.domain;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -21,11 +23,11 @@ public class EmployeeEntity implements Serializable {
     @Column(name = "BIRTH_DATE", nullable = false)
     private Date birthDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "OUTPOST_ID")
     private OutpostEntity outpost;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "POSITION_ID", nullable = false)
     private PositionEntity position;
 

@@ -30,10 +30,10 @@ public class CarEntity implements Serializable {
     @Column(name = "COLOR", nullable = false, length = 50)
     private String color;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car", cascade = CascadeType.ALL)
     private Set<RentalEntity> rentals = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "cars")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "cars", cascade = CascadeType.ALL)
     private Set<EmployeeEntity> employees = new HashSet<>();
 
     public CarEntity() {
@@ -50,6 +50,18 @@ public class CarEntity implements Serializable {
         this.color = color;
         this.rentals = rentals;
         this.employees = employees;
+    }
+
+    public CarEntity(CarEntityBuilder builder) {
+        this.brandName = builder.brandName;
+        this.productionYear = builder.productionYear;
+        this.engineCapacity = builder.engineCapacity;
+        this.power = builder.power;
+        this.mileage = builder.mileage;
+        this.carType = builder.carType;
+        this.color = builder.color;
+        this.rentals = builder.rentals;
+        this.employees = builder.employees;
     }
 
     public long getId() {
@@ -189,14 +201,13 @@ public class CarEntity implements Serializable {
 
         public CarEntity build() {
             //checkBeforeBuild();
-            return new CarEntity(brandName, productionYear, engineCapacity, power, mileage,
-            carType, color, rentals, employees);
+            return new CarEntity(this);
         }
 
         private void checkBeforeBuild() {
             if (brandName == null || productionYear == 0 || engineCapacity == 0 || power == 0 || mileage == 0
                     || carType == null || color == null) {
-                throw new RuntimeException("Incorrect book to be created");
+                throw new RuntimeException("Incorrect car to be created");
             }
 
         }

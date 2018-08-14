@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
@@ -22,6 +23,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class CarDaoImplTest {
     @PersistenceContext
     private EntityManager entityManager;
@@ -30,33 +32,28 @@ public class CarDaoImplTest {
     @Autowired
     private EmployeeDao employeeDao;
 
-    private static CarEntity car1;
-    private static CarEntity car2;
-    private static EmployeeEntity employee;
-    private static OutpostEntity outpost;
-    private static PositionEntity position;
+    private CarEntity car1;
+    private CarEntity car2;
+    private EmployeeEntity employee;
+    private OutpostEntity outpost;
+    private PositionEntity position;
 
-    @BeforeClass
-    public static void init() {
+    @Before
+    public void init() {
         position = new PositionEntity("Sprzedawca");
         outpost = new OutpostEntity("address", "contactData");
         employee = new EmployeeEntity("Jan", "Kowalski", new Date(), outpost,
                 position);
-        car1 = new CarEntity.CarEntityBuilder().withBrandName("BMW").withCarType("Coupe").withEmployee(employee)
+        car1 = new CarEntity.CarEntityBuilder().withBrandName("BMW").withCarType("Coupe")
+                .withEmployee(employee)
                 .withEngineCapacity(2000).withMileage(20000).withPower(120).withProductionYear(2015).withColor("blue")
                 .withRentals(new HashSet<RentalEntity>()).build();
-        car2 = new CarEntity.CarEntityBuilder().withBrandName("Opel").withCarType("Sedan").withEmployee(employee)
+        employee.addCar(car1);
+        car2 = new CarEntity.CarEntityBuilder().withBrandName("Opel").withCarType("Sedan")
+                .withEmployee(employee)
                 .withEngineCapacity(1500).withMileage(30000).withPower(100).withProductionYear(2014).withColor("red")
                 .withRentals(new HashSet<RentalEntity>()).build();
-    }
-
-    @Before
-    public void setup() {
-        //carDao.deleteAll();
-        List<CarEntity> cars = carDao.findAll();
-        for (CarEntity car : cars) {
-            carDao.delete(car.getId());
-        }
+        employee.addCar(car2);
         carDao.save(car1);
         carDao.save(car2);
     }
