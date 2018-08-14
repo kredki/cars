@@ -162,6 +162,11 @@ public class CarEntity implements Serializable {
             return this;
         }
 
+        public CarEntityBuilder withColor(String color) {
+            this.color = color;
+            return this;
+        }
+
         public CarEntityBuilder withRentals(Set<RentalEntity> rentals) {
             this.rentals.addAll(rentals);
             return this;

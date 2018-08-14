@@ -30,7 +30,7 @@ public class EmployeeEntity implements Serializable {
     private PositionEntity position;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "CARETAKER",
+    @JoinTable(name = "CARETAKERS",
             joinColumns = {@JoinColumn(name = "EMPLOYEE_ID", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "CAR_ID", nullable = false, updatable = false)}
     )
