@@ -9,6 +9,7 @@ import com.capgemini.types.EmployeeTO;
 import com.capgemini.types.OutpostTO;
 import com.capgemini.types.PositionTO;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,8 +18,8 @@ public class EmployeeMapper {
         if (employee == null) {
             return null;
         }
-        OutpostTO outpostTO = OutpostMapper.toTo(employee.getOutpost());
-        PositionTO positionTO = PositionMapper.toTo(employee.getPosition());
+        OutpostTO outpostTO = OutpostMapper.toTO(employee.getOutpost());
+        PositionTO positionTO = PositionMapper.toTO(employee.getPosition());
         Set<CarTO> carTOs = CarMapper.map2TOs(employee.getCars());
 
         return new EmployeeTO.Builder().withBirthDate(employee.getBirthDate()).withCars(carTOs)
@@ -45,5 +46,13 @@ public class EmployeeMapper {
 
     public static Set<EmployeeEntity> map2Entities (Set<EmployeeTO> employees) {
         return employees.stream().map(EmployeeMapper::toEntity).collect(Collectors.toSet());
+    }
+
+    public static List<EmployeeTO> map2TOs (List<EmployeeEntity> employees) {
+        return employees.stream().map(EmployeeMapper::toTO).collect(Collectors.toList());
+    }
+
+    public static List<EmployeeEntity> map2Entities (List<EmployeeTO> employees) {
+        return employees.stream().map(EmployeeMapper::toEntity).collect(Collectors.toList());
     }
 }
