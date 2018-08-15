@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 @Repository
 public class OutpostDaoImpl extends AbstractDao<OutpostEntity, Long> implements OutpostDao {
     @Override
-    public void addEmployee(long outpostId, EmployeeEntity employee) {
+    public void addEmployeeToOutpost(long outpostId, EmployeeEntity employee) {
         long employeeId = employee.getId();
         TypedQuery<OutpostEntity> query = entityManager.createQuery(
                 "select o from OutpostEntity o where o.id = :employeeId", OutpostEntity.class);
@@ -21,7 +21,7 @@ public class OutpostDaoImpl extends AbstractDao<OutpostEntity, Long> implements 
     }
 
     @Override
-    public void removeEmployee(long outpostId, EmployeeEntity employee) {
+    public void removeEmployeeFromOutpost(long outpostId, EmployeeEntity employee) {
         long employeeId = employee.getId();
         TypedQuery<OutpostEntity> query = entityManager.createQuery(
                 "select o from OutpostEntity o where o.id = :employeeId", OutpostEntity.class);
