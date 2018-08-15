@@ -44,11 +44,11 @@ public class CarTO {
         private String carType;
         private String color;
 
-        public Builder() {
-        }
-
         private Set<RentalTO> rentals = new HashSet<>();
         private Set<EmployeeTO> employees = new HashSet<>();
+
+        public Builder() {
+        }
 
         public Builder withId(long id) {
             this.id = id;
