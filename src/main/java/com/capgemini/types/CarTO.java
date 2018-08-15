@@ -18,8 +18,8 @@ public class CarTO {
     private String carType;
     private String color;
 
-    private Set<RentalTO> rentals = new HashSet<>();
-    private Set<EmployeeTO> employees = new HashSet<>();
+    private final Set<RentalTO> rentals = new HashSet<>();
+    private final Set<EmployeeTO> employees = new HashSet<>();
 
     public CarTO(Builder builder) {
         this.id = builder.id;
@@ -34,7 +34,7 @@ public class CarTO {
         this.employees.addAll(builder.employees);
     }
 
-    public class Builder {
+    public static class Builder {
         private long id;
         private String brandName;
         private int productionYear;

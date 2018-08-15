@@ -1,9 +1,14 @@
 package com.capgemini.types;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 public class ClientTO {
     private long id;
     private String firstName;
@@ -26,7 +31,7 @@ public class ClientTO {
         this.rentals.addAll(builder.rentals);
     }
 
-    public class Builder {
+    public static class Builder {
         private long id;
         private String firstName;
         private String lastName;
@@ -37,36 +42,44 @@ public class ClientTO {
 
         private Set<RentalTO> rentals = new HashSet<>();
 
-        public void withId(long id) {
+        public Builder withId(long id) {
             this.id = id;
+            return this;
         }
 
-        public void withFirstName(String firstName) {
+        public Builder withFirstName(String firstName) {
             this.firstName = firstName;
+            return this;
         }
 
-        public void withLastName(String lastName) {
+        public Builder withLastName(String lastName) {
             this.lastName = lastName;
+            return this;
         }
 
-        public void withBirthdate(Date birthdate) {
+        public Builder withBirthdate(Date birthdate) {
             this.birthdate = birthdate;
+            return this;
         }
 
-        public void withTelephone(String telephone) {
+        public Builder withTelephone(String telephone) {
             this.telephone = telephone;
+            return this;
         }
 
-        public void withCardNo(String cardNo) {
+        public Builder withCardNo(String cardNo) {
             this.cardNo = cardNo;
+            return this;
         }
 
-        public void withEmail(String email) {
+        public Builder withEmail(String email) {
             this.email = email;
+            return this;
         }
 
-        public void withRentals(Set<RentalTO> rentals) {
+        public Builder withRentals(Set<RentalTO> rentals) {
             this.rentals.addAll(rentals);
+            return this;
         }
 
         public ClientTO build() {

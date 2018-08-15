@@ -1,8 +1,13 @@
 package com.capgemini.types;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 public class PositionTO {
     private long id;
     private String name;
@@ -15,22 +20,25 @@ public class PositionTO {
         this.employees = builder.employees;
     }
 
-    public class Builder {
+    public static class Builder {
         private long id;
         private String name;
 
         private Set<EmployeeTO> employees = new HashSet<>();
 
-        public void withId(long id) {
+        public Builder withId(long id) {
             this.id = id;
+            return this;
         }
 
-        public void withName(String name) {
+        public Builder withName(String name) {
             this.name = name;
+            return this;
         }
 
-        public void withEmployees(Set<EmployeeTO> employees) {
+        public Builder withEmployees(Set<EmployeeTO> employees) {
             this.employees.addAll(employees);
+            return this;
         }
 
         public PositionTO build() {

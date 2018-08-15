@@ -5,14 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Address {
+public class AddressEnity {
     @Column(name = "STREET", nullable = false, length = 50)
     String street;
     @Column(name = "NO", nullable = false, length = 50)

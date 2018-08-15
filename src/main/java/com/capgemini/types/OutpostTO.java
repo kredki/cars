@@ -1,13 +1,16 @@
 package com.capgemini.types;
 
-import com.capgemini.domain.Address;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 public class OutpostTO {
     private long id;
-    private Address address;
+    private AddressTO address;
     private String contactData;
 
     private Set<EmployeeTO> employees = new HashSet<EmployeeTO>();
@@ -23,9 +26,9 @@ public class OutpostTO {
         this.endRentals.addAll(builder.endRentals);
     }
 
-    public class Builder {
+    public static class Builder {
         private long id;
-        private Address address;
+        private AddressTO address;
         private String contactData;
 
         private Set<EmployeeTO> employees = new HashSet<EmployeeTO>();
@@ -37,7 +40,7 @@ public class OutpostTO {
             return this;
         }
 
-        public Builder withAddress(Address address) {
+        public Builder withAddress(AddressTO address) {
             this.address = address;
             return this;
         }

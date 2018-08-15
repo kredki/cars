@@ -1,8 +1,13 @@
 package com.capgemini.types;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Getter
+@Setter
 public class RentalTO {
     private long id;
     private String brandName;
@@ -27,7 +32,7 @@ public class RentalTO {
         this.endOutpost = builder.endOutpost;
     }
 
-    public class Builder {
+    public static class Builder {
         private long id;
         private String brandName;
         private Date startDate;
@@ -39,40 +44,49 @@ public class RentalTO {
         private OutpostTO startOutpost;
         private OutpostTO endOutpost;
 
-        public void withId(long id) {
+        public Builder withId(long id) {
             this.id = id;
+            return this;
         }
 
-        public void withBrandName(String brandName) {
+        public Builder withBrandName(String brandName) {
             this.brandName = brandName;
+            return this;
         }
 
-        public void withStartDate(Date startDate) {
+        public Builder withStartDate(Date startDate) {
             this.startDate = startDate;
+            return this;
         }
 
-        public void withEndDate(Date endDate) {
+        public Builder withEndDate(Date endDate) {
             this.endDate = endDate;
+            return this;
         }
 
-        public void withCost(BigDecimal cost) {
+        public Builder withCost(BigDecimal cost) {
             this.cost = cost;
+            return this;
         }
 
-        public void withCar(CarTO car) {
+        public Builder withCar(CarTO car) {
             this.car = car;
+            return this;
         }
 
-        public void withClient(ClientTO client) {
+        public Builder withClient(ClientTO client) {
             this.client = client;
+            return this;
         }
 
-        public void withStartOutpost(OutpostTO startOutpost) {
+        public Builder withStartOutpost(OutpostTO startOutpost) {
             this.startOutpost = startOutpost;
+            return this;
         }
 
-        public void withEndOutpost(OutpostTO endOutpost) {
+        public Builder withEndOutpost(OutpostTO endOutpost) {
             this.endOutpost = endOutpost;
+            return this;
         }
 
         public RentalTO build() {

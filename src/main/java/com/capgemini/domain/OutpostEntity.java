@@ -14,7 +14,7 @@ public class OutpostEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Embedded
-    private Address address;
+    private AddressEnity address;
     @Column(name = "CONTACT_DATA", nullable = false, length = 200)
     private String contactData;
 
@@ -30,7 +30,7 @@ public class OutpostEntity implements Serializable {
     public OutpostEntity() {
     }
 
-    public OutpostEntity(Address address, String contactData, Set<EmployeeEntity> employees,
+    public OutpostEntity(AddressEnity address, String contactData, Set<EmployeeEntity> employees,
                          Set<RentalEntity> startRentals, Set<RentalEntity> endRentals) {
         this.address = address;
         this.contactData = contactData;
@@ -39,7 +39,7 @@ public class OutpostEntity implements Serializable {
         this.endRentals = endRentals;
     }
 
-    public OutpostEntity(Address address, String contactData) {
+    public OutpostEntity(AddressEnity address, String contactData) {
         this.address = address;
         this.contactData = contactData;
         this.employees = new HashSet<>();
@@ -55,11 +55,11 @@ public class OutpostEntity implements Serializable {
         this.id = id;
     }
 
-    public Address getAddress() {
+    public AddressEnity getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(AddressEnity address) {
         this.address = address;
     }
 
@@ -71,6 +71,30 @@ public class OutpostEntity implements Serializable {
         this.contactData = contactData;
     }
 
+    public Set<EmployeeEntity> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<EmployeeEntity> employees) {
+        this.employees = employees;
+    }
+
+    public Set<RentalEntity> getStartRentals() {
+        return startRentals;
+    }
+
+    public void setStartRentals(Set<RentalEntity> startRentals) {
+        this.startRentals = startRentals;
+    }
+
+    public Set<RentalEntity> getEndRentals() {
+        return endRentals;
+    }
+
+    public void setEndRentals(Set<RentalEntity> endRentals) {
+        this.endRentals = endRentals;
+    }
+
     public void addEmployee(EmployeeEntity employee) {
         this.employees.add(employee);
         employee.setOutpost(this);
@@ -79,5 +103,65 @@ public class OutpostEntity implements Serializable {
     public void removeEmployee(EmployeeEntity employee) {
         this.employees.remove(employee);
         employee.setOutpost(null);
+    }
+
+    public OutpostEntity(Builder builder) {
+        this.id = builder.id;
+        this.address = builder.address;
+        this.contactData = builder.contactData;
+        this.employees = builder.employees;
+        this.startRentals.addAll(builder.startRentals);
+        this.endRentals.addAll(builder.endRentals);
+    }
+
+    public static class Builder {
+        private long id;
+        private AddressEnity address;
+        private String contactData;
+
+        private Set<EmployeeEntity> employees = new HashSet<>();
+        private Set<RentalEntity> startRentals = new HashSet<>();
+        private Set<RentalEntity> endRentals = new HashSet<>();
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withAddress(AddressEnity address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder withContactData(String  contactData) {
+            this.contactData = contactData;
+            return this;
+        }
+
+        public Builder withEmployees(Set<EmployeeEntity> employees) {
+            this.employees.addAll(employees);
+            return this;
+        }
+
+        public Builder withStartRentals(Set<RentalEntity> startRentals) {
+            this.startRentals.addAll(startRentals);
+            return this;
+        }
+
+        public Builder withEndRentals(Set<RentalEntity> endRentals) {
+            this.endRentals.addAll(endRentals);
+            return this;
+        }
+
+        public OutpostEntity build() {
+            checkBeforeBuild();
+            return new OutpostEntity(this);
+        }
+
+        private void checkBeforeBuild() {
+            if (address == null || contactData == null) {
+                throw new RuntimeException("Incorrect outpost to be created");
+            }
+        }
     }
 }

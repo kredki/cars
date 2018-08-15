@@ -1,18 +1,21 @@
 package com.capgemini.types;
 
-import com.capgemini.domain.OutpostEntity;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 public class EmployeeTO {
     private long id;
     private String firstName;
     private String lastName;
     private Date birthDate;
 
-    private OutpostEntity outpost;
+    private OutpostTO outpost;
     private PositionTO position;
     private Set<CarTO> cars = new HashSet<>();
 
@@ -26,42 +29,49 @@ public class EmployeeTO {
         this.cars.addAll(builder.cars);
     }
 
-    public class Builder {
+    public static class Builder {
         private long id;
         private String firstName;
         private String lastName;
         private Date birthDate;
 
-        private OutpostEntity outpost;
+        private OutpostTO outpost;
         private PositionTO position;
         private Set<CarTO> cars = new HashSet<>();
 
-        public void withId(long id) {
+        public Builder withId(long id) {
             this.id = id;
+            return this;
         }
 
-        public void withFirstName(String firstName) {
+        public Builder withFirstName(String firstName) {
             this.firstName = firstName;
+            return this;
         }
 
-        public void withLastName(String lastName) {
+        public Builder withLastName(String lastName) {
             this.lastName = lastName;
+            return this;
         }
 
-        public void withBirthDate(Date birthDate) {
+        public Builder withBirthDate(Date birthDate) {
             this.birthDate = birthDate;
+            return this;
         }
 
-        public void withOutpost(OutpostEntity outpost) {
+        public Builder withOutpost(OutpostTO outpost) {
             this.outpost = outpost;
+            return this;
         }
 
-        public void withPosition(PositionTO position) {
+        public Builder withPosition(PositionTO position) {
             this.position = position;
+            return this;
         }
 
-        public void withCars(Set<CarTO> cars) {
+        public Builder withCars(Set<CarTO> cars) {
             this.cars.addAll(cars);
+            return this;
         }
 
         public EmployeeTO build() {

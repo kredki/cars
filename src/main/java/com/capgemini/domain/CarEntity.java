@@ -51,6 +51,7 @@ public class CarEntity implements Serializable {
     }
 
     public CarEntity(CarEntityBuilder builder) {
+        this.id = builder.id;
         this.brandName = builder.brandName;
         this.productionYear = builder.productionYear;
         this.engineCapacity = builder.engineCapacity;
@@ -126,7 +127,24 @@ public class CarEntity implements Serializable {
         this.color = color;
     }
 
+    public Set<RentalEntity> getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(Set<RentalEntity> rentals) {
+        this.rentals = rentals;
+    }
+
+    public Set<EmployeeEntity> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<EmployeeEntity> employees) {
+        this.employees = employees;
+    }
+
     public static class CarEntityBuilder {
+        private long id;
         private String brandName;
         private int productionYear;
         private int engineCapacity;
@@ -140,6 +158,11 @@ public class CarEntity implements Serializable {
 
         public CarEntityBuilder() {
             super();
+        }
+
+        public CarEntityBuilder withId(long id) {
+            this.id = id;
+            return this;
         }
 
         public CarEntityBuilder withBrandName(String brandName) {

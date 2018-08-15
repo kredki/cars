@@ -38,7 +38,7 @@ public class CarDaoImplTest {
     @Before
     public void init() {
         position = new PositionEntity("Sprzedawca");
-        Address address = new Address("street", "no", "city", "postal code");
+        AddressEnity address = new AddressEnity("street", "no", "city", "postal code");
         outpost = new OutpostEntity(address, "contactData");
         employee = new EmployeeEntity("Jan", "Kowalski", new Date(), outpost,
                 position);
