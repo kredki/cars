@@ -8,10 +8,17 @@ public class AddressMapper {
         if (address == null) {
             return null;
         }
-        return null;
+
+        return new AddressTO.Builder().withCity(address.getCity()).withNo(address.getNo())
+                .withPostalCode(address.getPostalCode()).withStreet(address.getStreet()).build();
     }
 
     public static AddressEnity toEntity(AddressTO address) {
-        return null;
+        if (address == null) {
+            return null;
+        }
+
+        return new AddressEnity.Builder().withCity(address.getCity()).withNo(address.getNo())
+                .withPostalCode(address.getPostalCode()).withStreet(address.getStreet()).build();
     }
 }

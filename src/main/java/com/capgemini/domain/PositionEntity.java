@@ -47,4 +47,51 @@ public class PositionEntity implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Set<EmployeeEntity> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<EmployeeEntity> employees) {
+        this.employees = employees;
+    }
+
+    public PositionEntity(Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.employees = builder.employees;
+    }
+
+    public static class Builder {
+        private long id;
+        private String name;
+
+        private Set<EmployeeEntity> employees = new HashSet<>();
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withEmployees(Set<EmployeeEntity> employees) {
+            this.employees.addAll(employees);
+            return this;
+        }
+
+        public PositionEntity build() {
+            checkBeforeBuild();
+            return new PositionEntity(this);
+        }
+
+        private void checkBeforeBuild() {
+            if (name == null) {
+                throw new RuntimeException("Incorrect position to be created");
+            }
+        }
+    }
 }
