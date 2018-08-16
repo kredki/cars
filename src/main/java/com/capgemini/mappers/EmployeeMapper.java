@@ -1,13 +1,7 @@
 package com.capgemini.mappers;
 
-import com.capgemini.domain.CarEntity;
 import com.capgemini.domain.EmployeeEntity;
-import com.capgemini.domain.OutpostEntity;
-import com.capgemini.domain.PositionEntity;
-import com.capgemini.types.CarTO;
 import com.capgemini.types.EmployeeTO;
-import com.capgemini.types.OutpostTO;
-import com.capgemini.types.PositionTO;
 
 import java.util.List;
 import java.util.Set;
@@ -18,26 +12,18 @@ public class EmployeeMapper {
         if (employee == null) {
             return null;
         }
-        OutpostTO outpostTO = OutpostMapper.toTO(employee.getOutpost());
-        PositionTO positionTO = PositionMapper.toTO(employee.getPosition());
-        Set<CarTO> carTOs = CarMapper.map2TOs(employee.getCars());
 
-        return new EmployeeTO.Builder().withBirthDate(employee.getBirthDate()).withCars(carTOs)
-                .withFirstName(employee.getFirstName()).withId(employee.getId()).withLastName(employee.getLastName())
-                .withOutpost(outpostTO).withPosition(positionTO).build();
+        return new EmployeeTO.Builder().withBirthDate(employee.getBirthDate()).withFirstName(employee.getFirstName())
+                .withId(employee.getId()).withLastName(employee.getLastName()).build();
     }
 
     public static EmployeeEntity toEntity(EmployeeTO employee) {
         if (employee == null) {
             return null;
         }
-        OutpostEntity outpostEntity = OutpostMapper.toEntity(employee.getOutpost());
-        PositionEntity positionEntity = PositionMapper.toEntity(employee.getPosition());
-        Set<CarEntity> carEntities = CarMapper.map2Entities(employee.getCars());
 
-        return new EmployeeEntity.Builder().withBirthDate(employee.getBirthDate()).withCars(carEntities)
-                .withFirstName(employee.getFirstName()).withId(employee.getId()).withLastName(employee.getLastName())
-                .withOutpost(outpostEntity).withPosition(positionEntity).build();
+        return new EmployeeEntity.Builder().withBirthDate(employee.getBirthDate()).withFirstName(employee.getFirstName())
+                .withId(employee.getId()).withLastName(employee.getLastName()).build();
     }
 
     public static Set<EmployeeTO> map2TOs (Set<EmployeeEntity> employees) {

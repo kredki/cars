@@ -3,9 +3,6 @@ package com.capgemini.types;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Getter
 @Setter
 public class CarTO {
@@ -18,9 +15,6 @@ public class CarTO {
     private String carType;
     private String color;
 
-    private final Set<RentalTO> rentals = new HashSet<>();
-    private final Set<EmployeeTO> employees = new HashSet<>();
-
     public CarTO(Builder builder) {
         this.id = builder.id;
         this.brandName = builder.brandName;
@@ -30,8 +24,6 @@ public class CarTO {
         this.mileage = builder.mileage;
         this.carType = builder.carType;
         this.color = builder.color;
-        this.rentals.addAll(builder.rentals);
-        this.employees.addAll(builder.employees);
     }
 
     public static class Builder {
@@ -43,9 +35,6 @@ public class CarTO {
         private int mileage;
         private String carType;
         private String color;
-
-        private Set<RentalTO> rentals = new HashSet<>();
-        private Set<EmployeeTO> employees = new HashSet<>();
 
         public Builder() {
         }
@@ -70,6 +59,11 @@ public class CarTO {
             return this;
         }
 
+        public Builder withPower(int power) {
+            this.power = power;
+            return this;
+        }
+
         public Builder withMileage(int mileage) {
             this.mileage = mileage;
             return this;
@@ -82,16 +76,6 @@ public class CarTO {
 
         public Builder withColor(String color) {
             this.color = color;
-            return this;
-        }
-
-        public Builder withRentals(Set<RentalTO> rentals) {
-            this.rentals.addAll(rentals);
-            return this;
-        }
-
-        public Builder withEmployees(Set<EmployeeTO> employees) {
-            this.employees.addAll(employees);
             return this;
         }
 

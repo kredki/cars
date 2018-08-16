@@ -15,21 +15,12 @@ public class RentalTO {
     private Date endDate;
     private BigDecimal cost;
 
-    private CarTO car;
-    private ClientTO client;
-    private OutpostTO startOutpost;
-    private OutpostTO endOutpost;
-
     public RentalTO(Builder builder) {
         this.id = builder.id;
         this.brandName = builder.brandName;
         this.startDate = builder.startDate;
         this.endDate = builder.endDate;
         this.cost = builder.cost;
-        this.car = builder.car;
-        this.client = builder.client;
-        this.startOutpost = builder.startOutpost;
-        this.endOutpost = builder.endOutpost;
     }
 
     public static class Builder {
@@ -38,11 +29,6 @@ public class RentalTO {
         private Date startDate;
         private Date endDate;
         private BigDecimal cost;
-
-        private CarTO car;
-        private ClientTO client;
-        private OutpostTO startOutpost;
-        private OutpostTO endOutpost;
 
         public Builder withId(long id) {
             this.id = id;
@@ -69,33 +55,13 @@ public class RentalTO {
             return this;
         }
 
-        public Builder withCar(CarTO car) {
-            this.car = car;
-            return this;
-        }
-
-        public Builder withClient(ClientTO client) {
-            this.client = client;
-            return this;
-        }
-
-        public Builder withStartOutpost(OutpostTO startOutpost) {
-            this.startOutpost = startOutpost;
-            return this;
-        }
-
-        public Builder withEndOutpost(OutpostTO endOutpost) {
-            this.endOutpost = endOutpost;
-            return this;
-        }
-
         public RentalTO build() {
             checkBeforeBuild();
             return new RentalTO(this);
         }
 
         private void checkBeforeBuild() {
-            if (brandName == null || startDate == null || cost == null || car == null || client == null || startOutpost == null) {
+            if (brandName == null || startDate == null || cost == null) {
                 throw new RuntimeException("Incorrect rental to be created");
             }
         }

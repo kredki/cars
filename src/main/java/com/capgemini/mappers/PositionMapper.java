@@ -1,8 +1,6 @@
 package com.capgemini.mappers;
 
-import com.capgemini.domain.EmployeeEntity;
 import com.capgemini.domain.PositionEntity;
-import com.capgemini.types.EmployeeTO;
 import com.capgemini.types.PositionTO;
 
 import java.util.Set;
@@ -14,10 +12,7 @@ public class PositionMapper {
             return null;
         }
 
-        Set<EmployeeTO> employees = EmployeeMapper.map2TOs(position.getEmployees());
-
-        return new PositionTO.Builder().withEmployees(employees).withId(position.getId()).withName(position.getName())
-                .build();
+        return new PositionTO.Builder().withName(position.getName()).build();
     }
 
     public static PositionEntity toEntity(PositionTO position) {
@@ -25,10 +20,7 @@ public class PositionMapper {
             return null;
         }
 
-        Set<EmployeeEntity> employees = EmployeeMapper.map2Entities(position.getEmployees());
-
-        return new PositionEntity.Builder().withEmployees(employees).withId(position.getId()).withName(position.getName())
-                .build();
+        return new PositionEntity.Builder().withId(position.getId()).withName(position.getName()).build();
     }
 
     public static Set<PositionTO> map2TOs (Set<PositionEntity> positions) {

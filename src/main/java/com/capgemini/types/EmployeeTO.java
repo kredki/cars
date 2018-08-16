@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -15,18 +13,11 @@ public class EmployeeTO {
     private String lastName;
     private Date birthDate;
 
-    private OutpostTO outpost;
-    private PositionTO position;
-    private Set<CarTO> cars = new HashSet<>();
-
     public EmployeeTO(Builder builder) {
         this.id = builder.id;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.birthDate = builder.birthDate;
-        this.outpost = builder.outpost;
-        this.position = builder.position;
-        this.cars.addAll(builder.cars);
     }
 
     public static class Builder {
@@ -34,10 +25,6 @@ public class EmployeeTO {
         private String firstName;
         private String lastName;
         private Date birthDate;
-
-        private OutpostTO outpost;
-        private PositionTO position;
-        private Set<CarTO> cars = new HashSet<>();
 
         public Builder withId(long id) {
             this.id = id;
@@ -56,21 +43,6 @@ public class EmployeeTO {
 
         public Builder withBirthDate(Date birthDate) {
             this.birthDate = birthDate;
-            return this;
-        }
-
-        public Builder withOutpost(OutpostTO outpost) {
-            this.outpost = outpost;
-            return this;
-        }
-
-        public Builder withPosition(PositionTO position) {
-            this.position = position;
-            return this;
-        }
-
-        public Builder withCars(Set<CarTO> cars) {
-            this.cars.addAll(cars);
             return this;
         }
 

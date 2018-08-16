@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -18,8 +16,6 @@ public class ClientTO {
     private String cardNo;
     private String email;
 
-    private Set<RentalTO> rentals = new HashSet<>();
-
     public ClientTO(Builder builder) {
         this.id = builder.id;
         this.firstName = builder.firstName;
@@ -28,7 +24,6 @@ public class ClientTO {
         this.telephone = builder.telephone;
         this.cardNo = builder.cardNo;
         this.email = builder.email;
-        this.rentals.addAll(builder.rentals);
     }
 
     public static class Builder {
@@ -39,8 +34,6 @@ public class ClientTO {
         private String telephone;
         private String cardNo;
         private String email;
-
-        private Set<RentalTO> rentals = new HashSet<>();
 
         public Builder withId(long id) {
             this.id = id;
@@ -74,11 +67,6 @@ public class ClientTO {
 
         public Builder withEmail(String email) {
             this.email = email;
-            return this;
-        }
-
-        public Builder withRentals(Set<RentalTO> rentals) {
-            this.rentals.addAll(rentals);
             return this;
         }
 

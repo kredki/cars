@@ -1,12 +1,6 @@
 package com.capgemini.mappers;
 
-import com.capgemini.domain.CarEntity;
-import com.capgemini.domain.ClientEntity;
-import com.capgemini.domain.OutpostEntity;
 import com.capgemini.domain.RentalEntity;
-import com.capgemini.types.CarTO;
-import com.capgemini.types.ClientTO;
-import com.capgemini.types.OutpostTO;
 import com.capgemini.types.RentalTO;
 
 import java.util.Set;
@@ -18,14 +12,9 @@ public class RentalMapper {
             return null;
         }
 
-        CarTO car = CarMapper.toTO(rental.getCar());
-        ClientTO client = ClientMapper.toTO(rental.getClient());
-        OutpostTO startOutpost = OutpostMapper.toTO(rental.getStartOutpost());
-        OutpostTO endOutpost = OutpostMapper.toTO(rental.getEndOutpost());
-
-        return new RentalTO.Builder().withBrandName(rental.getBrandName()).withCar(car).withClient(client)
-                .withCost(rental.getCost()).withEndDate(rental.getEndDate()).withEndOutpost(endOutpost)
-                .withId(rental.getId()).withStartDate(rental.getStartDate()).withStartOutpost(startOutpost).build();
+        return new RentalTO.Builder().withBrandName(rental.getBrandName())
+                .withCost(rental.getCost()).withEndDate(rental.getEndDate())
+                .withId(rental.getId()).withStartDate(rental.getStartDate()).build();
     }
 
     public static RentalEntity toEntity(RentalTO rental) {
@@ -33,14 +22,9 @@ public class RentalMapper {
             return null;
         }
 
-        CarEntity car = CarMapper.toEntity(rental.getCar());
-        ClientEntity client = ClientMapper.toEntity(rental.getClient());
-        OutpostEntity startOutpost = OutpostMapper.toEntity(rental.getStartOutpost());
-        OutpostEntity endOutpost = OutpostMapper.toEntity(rental.getEndOutpost());
-
-        return new RentalEntity.Builder().withBrandName(rental.getBrandName()).withCar(car).withClient(client)
-                .withCost(rental.getCost()).withEndDate(rental.getEndDate()).withEndOutpost(endOutpost)
-                .withId(rental.getId()).withStartDate(rental.getStartDate()).withStartOutpost(startOutpost).build();
+        return new RentalEntity.Builder().withBrandName(rental.getBrandName())
+                .withCost(rental.getCost()).withEndDate(rental.getEndDate())
+                .withId(rental.getId()).withStartDate(rental.getStartDate()).build();
     }
 
     public static Set<RentalTO> map2TOs (Set<RentalEntity> rentals) {

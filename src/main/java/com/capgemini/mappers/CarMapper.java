@@ -1,11 +1,7 @@
 package com.capgemini.mappers;
 
 import com.capgemini.domain.CarEntity;
-import com.capgemini.domain.EmployeeEntity;
-import com.capgemini.domain.RentalEntity;
 import com.capgemini.types.CarTO;
-import com.capgemini.types.EmployeeTO;
-import com.capgemini.types.RentalTO;
 
 import java.util.List;
 import java.util.Set;
@@ -16,24 +12,19 @@ public class CarMapper {
         if (car == null) {
             return null;
         }
-        Set<RentalTO> rentalTOs = RentalMapper.map2TOs(car.getRentals());
-        Set<EmployeeTO> employeeTOs = EmployeeMapper.map2TOs(car.getEmployees());
         return new CarTO.Builder().withBrandName(car.getBrandName()).withCarType(car.getCarType())
-                .withColor(car.getColor()).withEmployees(employeeTOs).withEngineCapacity(car.getEngineCapacity())
-                .withId(car.getId()).withMileage(car.getMileage()).withProductionYear(car.getProductionYear())
-                .withRentals(rentalTOs).build();
+                .withColor(car.getColor()).withEngineCapacity(car.getEngineCapacity()).withPower(car.getPower())
+                .withId(car.getId()).withMileage(car.getMileage()).withProductionYear(car.getProductionYear()).build();
     }
 
     public static CarEntity toEntity(CarTO car) {
         if (car == null) {
             return null;
         }
-        Set<RentalEntity> rentalEntities = RentalMapper.map2Entities(car.getRentals());
-        Set<EmployeeEntity> employeeEntities = EmployeeMapper.map2Entities(car.getEmployees());
+
         return new CarEntity.CarEntityBuilder().withBrandName(car.getBrandName()).withCarType(car.getCarType())
-                .withColor(car.getColor()).withEmployees(employeeEntities).withEngineCapacity(car.getEngineCapacity())
-                .withId(car.getId()).withMileage(car.getMileage()).withProductionYear(car.getProductionYear())
-                .withRentals(rentalEntities).build();
+                .withColor(car.getColor()).withEngineCapacity(car.getEngineCapacity()).withPower(car.getPower())
+                .withId(car.getId()).withMileage(car.getMileage()).withProductionYear(car.getProductionYear()).build();
     }
 
     public static Set<CarTO> map2TOs (Set<CarEntity> cars) {
