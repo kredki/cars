@@ -10,9 +10,11 @@ import com.capgemini.mappers.EmployeeMapper;
 import com.capgemini.service.EmployeeService;
 import com.capgemini.types.EmployeeTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     EmployeeDao employeeRepository;

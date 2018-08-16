@@ -6,9 +6,11 @@ import com.capgemini.mappers.CarMapper;
 import com.capgemini.service.CarService;
 import com.capgemini.types.CarTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CarServiceImpl implements CarService {
     @Autowired
     CarDao carRepository;

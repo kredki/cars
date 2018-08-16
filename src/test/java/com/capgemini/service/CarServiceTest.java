@@ -1,7 +1,9 @@
-package com.capgemini.dao.impl;
+package com.capgemini.service;
 
-import com.capgemini.dao.EmployeeDao;
+import com.capgemini.dao.CarDao;
 import com.capgemini.domain.*;
+import com.capgemini.service.impl.CarServiceImpl;
+import com.capgemini.types.CarTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,13 +25,13 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 @PropertySource("application-hsql.properties")
 @Transactional
-public class CarDaoImplTest {
+public class CarServiceTest {
+    @Autowired
+    private CarServiceImpl carService;
+    @Autowired
+    private CarDao carDao;
     @PersistenceContext
     private EntityManager entityManager;
-    @Autowired
-    private CarDaoImpl carDao;
-    @Autowired
-    private EmployeeDao employeeDao;
 
     private CarEntity car1;
     private CarEntity car2;
@@ -38,7 +40,7 @@ public class CarDaoImplTest {
     private PositionEntity position;
 
     @Before
-    public void init() {
+    public void setup() {
         position = new PositionEntity("Sprzedawca");
         AddressEnity address = new AddressEnity("street", "no", "city", "postal code");
         outpost = new OutpostEntity(address, "contactData");
@@ -64,11 +66,11 @@ public class CarDaoImplTest {
         String type = "Sedan";
 
         //when
-        List<CarEntity> result = carDao.findCarByType(type);
+        List<CarTO> result = carService.findCarByType(type);
 
         //then
         assertEquals(1, result.size());
-        CarEntity car = result.get(0);
+        CarTO car = result.get(0);
         assertEquals(car2.getEngineCapacity(), car.getEngineCapacity());
         assertEquals(car2.getBrandName(), car.getBrandName());
         assertEquals(type, car.getCarType());
@@ -76,37 +78,5 @@ public class CarDaoImplTest {
         assertEquals(car2.getMileage(), car.getMileage());
         assertEquals(car2.getPower(), car.getPower());
         assertEquals(car2.getProductionYear(), car.getProductionYear());
-    }
-
-    @Test
-    public void shouldReturnCarByBrand() {
-        //given
-        String brand = "Opel";
-
-        //when
-        List<CarEntity> result = carDao.findCarByBrand(brand);
-
-        //then
-        assertEquals(1, result.size());
-        CarEntity car = result.get(0);
-        assertEquals(car2.getEngineCapacity(), car.getEngineCapacity());
-        assertEquals(brand, car.getBrandName());
-        assertEquals(car2.getCarType(), car.getCarType());
-        assertEquals(car2.getColor(), car.getColor());
-        assertEquals(car2.getMileage(), car.getMileage());
-        assertEquals(car2.getPower(), car.getPower());
-        assertEquals(car2.getProductionYear(), car.getProductionYear());
-    }
-
-    @Test
-    public void shouldReturnCarByCaretaker() {
-        //given
-        long employeeId = employeeDao.findAll().get(0).getId();
-
-        //when
-        List<CarEntity> result = carDao.findCarByCaretaker(employeeId);
-
-        //then
-        assertEquals(2, result.size());
     }
 }
