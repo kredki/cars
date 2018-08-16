@@ -18,12 +18,22 @@ public class OutpostServiceImpl implements OutpostService {
         this.employeeRepository = employeeRepository;
     }
 
+    /**
+     * add employee to outpost.
+     * @param outpostId
+     * @param employeeId
+     */
     @Override
     public void addEmployee(long outpostId, long employeeId) {
         EmployeeEntity employee = employeeRepository.findOne(employeeId);
         outpostRepository.addEmployeeToOutpost(outpostId, employee);
     }
 
+    /**
+     * Remove emloyee from outpost.
+     * @param outpostId
+     * @param employeeId
+     */
     @Override
     public void removeEmployee(long outpostId, long employeeId) {
         EmployeeEntity employee = employeeRepository.findOne(employeeId);

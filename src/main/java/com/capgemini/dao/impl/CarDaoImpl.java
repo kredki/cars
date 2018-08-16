@@ -8,9 +8,17 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * Car DAO Implementation
+ */
 @Repository
 public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
 
+    /**
+     *
+     * @param type
+     * @return Cars of requested type.
+     */
     @Override
     public List<CarEntity> findCarByType(String type) {
         TypedQuery<CarEntity> query = entityManager.createQuery(
@@ -19,6 +27,11 @@ public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
         return query.getResultList();
     }
 
+    /**
+     *
+     * @param brand
+     * @return Cars of requested brand.
+     */
     @Override
     public List<CarEntity> findCarByBrand(String brand) {
         TypedQuery<CarEntity> query = entityManager.createQuery(
@@ -27,6 +40,11 @@ public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
         return query.getResultList();
     }
 
+    /**
+     *
+     * @param caretakerId
+     * @return Cars assigned to requested caretaker.
+     */
     @Override
     public List<CarEntity> findCarByCaretaker(long caretakerId) {
         EmployeeEntity employee = entityManager.getReference(EmployeeEntity.class, caretakerId);
@@ -36,6 +54,9 @@ public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
         return query.getResultList();
     }
 
+    /**
+     * Deleta all cars.
+     */
     public void deleteAll() {
         entityManager.createQuery("delete from CarEntity", CarEntity.class).executeUpdate();
     }

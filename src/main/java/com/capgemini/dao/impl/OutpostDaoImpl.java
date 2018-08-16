@@ -9,6 +9,11 @@ import javax.persistence.TypedQuery;
 
 @Repository
 public class OutpostDaoImpl extends AbstractDao<OutpostEntity, Long> implements OutpostDao {
+    /**
+     * Add employee to outpost.
+     * @param outpostId
+     * @param employee
+     */
     @Override
     public void addEmployeeToOutpost(long outpostId, EmployeeEntity employee) {
         long employeeId = employee.getId();
@@ -20,6 +25,11 @@ public class OutpostDaoImpl extends AbstractDao<OutpostEntity, Long> implements 
         entityManager.persist(outpost);
     }
 
+    /**
+     * Remove employee from outpost.
+     * @param outpostId
+     * @param employee
+     */
     @Override
     public void removeEmployeeFromOutpost(long outpostId, EmployeeEntity employee) {
         long employeeId = employee.getId();

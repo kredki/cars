@@ -9,8 +9,16 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * Employee DAO Implementation
+ */
 @Repository
 public class EmployeeDaoImpl extends AbstractDao<EmployeeEntity, Long> implements EmployeeDao {
+    /**
+     *
+     * @param outpostId
+     * @return Employees assigend to requested outpost.
+     */
     @Override
     public List<EmployeeEntity> findEmployeeByOutpost(long outpostId) {
         TypedQuery<EmployeeEntity> query = entityManager.createQuery(
@@ -19,6 +27,12 @@ public class EmployeeDaoImpl extends AbstractDao<EmployeeEntity, Long> implement
         return query.getResultList();
     }
 
+    /**
+     *
+     * @param outpost
+     * @param car
+     * @return Employees assigend to requested car and from requested outpost.
+     */
     @Override
     public List<EmployeeEntity> findCaretakerByOutpost(OutpostEntity outpost, CarEntity car) {
         TypedQuery<EmployeeEntity> query = entityManager.createQuery(
@@ -28,6 +42,11 @@ public class EmployeeDaoImpl extends AbstractDao<EmployeeEntity, Long> implement
         return query.getResultList();
     }
 
+    /**
+     * Assign car to employee.
+     * @param caretakerId
+     * @param car
+     */
     @Override
     public void addCar(long caretakerId, CarEntity car) {
         TypedQuery<EmployeeEntity> query = entityManager.createQuery(
