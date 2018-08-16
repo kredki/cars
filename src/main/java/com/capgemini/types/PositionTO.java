@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PositionTO {
-    private long id;
+    private Long id;
     private String name;
 
     public PositionTO(Builder builder) {
@@ -16,10 +16,10 @@ public class PositionTO {
     }
 
     public static class Builder {
-        private long id;
+        private Long id;
         private String name;
 
-        public Builder withId(long id) {
+        public Builder withId(Long id) {
             this.id = id;
             return this;
         }

@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OutpostTO {
-    private long id;
+    private Long id;
     private AddressTO address;
     private String contactData;
 
@@ -18,11 +18,11 @@ public class OutpostTO {
     }
 
     public static class Builder {
-        private long id;
+        private Long id;
         private AddressTO address;
         private String contactData;
 
-        public Builder withId(long id) {
+        public Builder withId(Long id) {
             this.id = id;
             return this;
         }

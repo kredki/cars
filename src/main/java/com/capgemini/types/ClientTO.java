@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class ClientTO {
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
     private Date birthdate;
@@ -28,7 +28,7 @@ public class ClientTO {
     }
 
     public static class Builder {
-        private long id;
+        private Long id;
         private String firstName;
         private String lastName;
         private Date birthdate;
@@ -36,7 +36,7 @@ public class ClientTO {
         private String cardNo;
         private String email;
 
-        public Builder withId(long id) {
+        public Builder withId(Long id) {
             this.id = id;
             return this;
         }

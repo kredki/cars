@@ -14,17 +14,17 @@ public class CarEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "BRAND_NAME", nullable = false, length = 50)
     private String brandName;
     @Column(name = "PRODUCTIOIN_YEAR", nullable = false)
-    private int productionYear;
+    private Integer productionYear;
     @Column(name = "ENGINE_CAPACITY", nullable = false)
-    private int engineCapacity;
+    private Integer engineCapacity;
     @Column(name = "POWER", nullable = false)
-    private int power;
+    private Integer power;
     @Column(name = "MILEAGE", nullable = false)
-    private int mileage;
+    private Integer mileage;
     @Column(name = "CAR_TYPE", nullable = false, length = 50)
     private String carType;
     @Column(name = "COLOR", nullable = false, length = 50)
@@ -39,7 +39,7 @@ public class CarEntity implements Serializable {
     public CarEntity() {
     }
 
-    public CarEntity(String brandName, int productionYear, int engineCapacity, int power, int mileage,
+    public CarEntity(String brandName, Integer productionYear, Integer engineCapacity, Integer power, Integer mileage,
                      String carType, String color, Set<RentalEntity> rentals, Set<EmployeeEntity> employees) {
         this.brandName = brandName;
         this.productionYear = productionYear;
@@ -65,11 +65,11 @@ public class CarEntity implements Serializable {
         this.employees = builder.employees;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -81,35 +81,35 @@ public class CarEntity implements Serializable {
         this.brandName = brandName;
     }
 
-    public int getProductionYear() {
+    public Integer getProductionYear() {
         return productionYear;
     }
 
-    public void setProductionYear(int productionYear) {
+    public void setProductionYear(Integer productionYear) {
         this.productionYear = productionYear;
     }
 
-    public int getEngineCapacity() {
+    public Integer getEngineCapacity() {
         return engineCapacity;
     }
 
-    public void setEngineCapacity(int engineCapacity) {
+    public void setEngineCapacity(Integer engineCapacity) {
         this.engineCapacity = engineCapacity;
     }
 
-    public int getPower() {
+    public Integer getPower() {
         return power;
     }
 
-    public void setPower(int power) {
+    public void setPower(Integer power) {
         this.power = power;
     }
 
-    public int getMileage() {
+    public Integer getMileage() {
         return mileage;
     }
 
-    public void setMileage(int mileage) {
+    public void setMileage(Integer mileage) {
         this.mileage = mileage;
     }
 
@@ -146,12 +146,12 @@ public class CarEntity implements Serializable {
     }
 
     public static class CarEntityBuilder {
-        private long id;
+        private Long id;
         private String brandName;
-        private int productionYear;
-        private int engineCapacity;
-        private int power;
-        private int mileage;
+        private Integer productionYear;
+        private Integer engineCapacity;
+        private Integer power;
+        private Integer mileage;
         private String carType;
         private String color;
         private Set<RentalEntity> rentals = new HashSet<>();
@@ -162,7 +162,7 @@ public class CarEntity implements Serializable {
             super();
         }
 
-        public CarEntityBuilder withId(long id) {
+        public CarEntityBuilder withId(Long id) {
             this.id = id;
             return this;
         }
@@ -172,22 +172,22 @@ public class CarEntity implements Serializable {
             return this;
         }
 
-        public CarEntityBuilder withProductionYear(int productionYear) {
+        public CarEntityBuilder withProductionYear(Integer productionYear) {
             this.productionYear = productionYear;
             return this;
         }
 
-        public CarEntityBuilder withEngineCapacity(int engineCapacity) {
+        public CarEntityBuilder withEngineCapacity(Integer engineCapacity) {
             this.engineCapacity = engineCapacity;
             return this;
         }
 
-        public CarEntityBuilder withPower(int power) {
+        public CarEntityBuilder withPower(Integer power) {
             this.power = power;
             return this;
         }
 
-        public CarEntityBuilder withMileage(int mileage) {
+        public CarEntityBuilder withMileage(Integer mileage) {
             this.mileage = mileage;
             return this;
         }
@@ -228,7 +228,7 @@ public class CarEntity implements Serializable {
         }
 
         private void checkBeforeBuild() {
-            if (brandName == null || productionYear == 0 || engineCapacity == 0 || power == 0 || mileage == 0
+            if (brandName == null || productionYear == null || engineCapacity == null || power == null || mileage == null
                     || carType == null || color == null) {
                 throw new IncorrectObjectException("Incorrect car to be created");
             }

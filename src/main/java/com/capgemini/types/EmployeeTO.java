@@ -9,7 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class EmployeeTO {
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
     private Date birthDate;
@@ -22,12 +22,12 @@ public class EmployeeTO {
     }
 
     public static class Builder {
-        private long id;
+        private Long id;
         private String firstName;
         private String lastName;
         private Date birthDate;
 
-        public Builder withId(long id) {
+        public Builder withId(Long id) {
             this.id = id;
             return this;
         }

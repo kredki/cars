@@ -9,10 +9,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OutpostServiceImpl implements OutpostService {
-    @Autowired
     OutpostDao outpostRepository;
-    @Autowired
     EmployeeDao employeeRepository;
+
+    @Autowired
+    public OutpostServiceImpl(OutpostDao outpostRepository, EmployeeDao employeeRepository) {
+        this.outpostRepository = outpostRepository;
+        this.employeeRepository = employeeRepository;
+    }
 
     @Override
     public void addEmployee(long outpostId, long employeeId) {

@@ -7,12 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CarTO {
-    private long id;
+    private Long id;
     private String brandName;
-    private int productionYear;
-    private int engineCapacity;
-    private int power;
-    private int mileage;
+    private Integer productionYear;
+    private Integer engineCapacity;
+    private Integer power;
+    private Integer mileage;
     private String carType;
     private String color;
 
@@ -28,19 +28,19 @@ public class CarTO {
     }
 
     public static class Builder {
-        private long id;
+        private Long id;
         private String brandName;
-        private int productionYear;
-        private int engineCapacity;
-        private int power;
-        private int mileage;
+        private Integer productionYear;
+        private Integer engineCapacity;
+        private Integer power;
+        private Integer mileage;
         private String carType;
         private String color;
 
         public Builder() {
         }
 
-        public Builder withId(long id) {
+        public Builder withId(Long id) {
             this.id = id;
             return this;
         }
@@ -50,22 +50,22 @@ public class CarTO {
             return this;
         }
 
-        public Builder withProductionYear(int productionYear) {
+        public Builder withProductionYear(Integer productionYear) {
             this.productionYear = productionYear;
             return this;
         }
 
-        public Builder withEngineCapacity(int engineCapacity) {
+        public Builder withEngineCapacity(Integer engineCapacity) {
             this.engineCapacity = engineCapacity;
             return this;
         }
 
-        public Builder withPower(int power) {
+        public Builder withPower(Integer power) {
             this.power = power;
             return this;
         }
 
-        public Builder withMileage(int mileage) {
+        public Builder withMileage(Integer mileage) {
             this.mileage = mileage;
             return this;
         }
@@ -86,7 +86,7 @@ public class CarTO {
         }
 
         private void checkBeforeBuild() {
-            if (brandName == null || productionYear == 0 || engineCapacity == 0 || power == 0 || mileage == 0
+            if (brandName == null || productionYear == null || engineCapacity == null || power == 0 || mileage == null
                     || carType == null || color == null) {
                 throw new IncorrectObjectException("Incorrect car to be created");
             }

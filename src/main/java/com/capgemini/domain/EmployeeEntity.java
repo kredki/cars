@@ -15,7 +15,7 @@ public class EmployeeEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "FIRST_NAME", nullable = false, length = 50)
     private String firstName;
     @Column(name = "LAST_NAME", nullable = false, length = 50)
@@ -61,11 +61,11 @@ public class EmployeeEntity implements Serializable {
         this.cars = new HashSet<>();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -132,7 +132,7 @@ public class EmployeeEntity implements Serializable {
     }
 
     public static class Builder {
-        private long id;
+        private Long id;
         private String firstName;
         private String lastName;
         private Date birthDate;
@@ -141,7 +141,7 @@ public class EmployeeEntity implements Serializable {
         private PositionEntity position;
         private Set<CarEntity> cars = new HashSet<>();
 
-        public Builder withId(long id) {
+        public Builder withId(Long id) {
             this.id = id;
             return this;
         }

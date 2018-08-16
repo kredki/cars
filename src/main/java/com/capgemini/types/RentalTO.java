@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class RentalTO {
-    private long id;
+    private Long id;
     private String brandName;
     private Date startDate;
     private Date endDate;
@@ -25,13 +25,13 @@ public class RentalTO {
     }
 
     public static class Builder {
-        private long id;
+        private Long id;
         private String brandName;
         private Date startDate;
         private Date endDate;
         private BigDecimal cost;
 
-        public Builder withId(long id) {
+        public Builder withId(Long id) {
             this.id = id;
             return this;
         }

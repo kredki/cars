@@ -12,8 +12,12 @@ import java.util.List;
 
 @Service
 public class CarServiceImpl implements CarService {
-    @Autowired
     CarDao carRepository;
+
+    @Autowired
+    public CarServiceImpl(CarDao carRepository) {
+        this.carRepository = carRepository;
+    }
 
     @Override
     public List<CarTO> findCarByType(String type) {

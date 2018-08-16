@@ -16,12 +16,16 @@ import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    @Autowired
     EmployeeDao employeeRepository;
-    @Autowired
     OutpostDao outpostRepository;
-    @Autowired
     CarDao carRepository;
+
+    @Autowired
+    public EmployeeServiceImpl(EmployeeDao employeeRepository, OutpostDao outpostRepository, CarDao carRepository) {
+        this.employeeRepository = employeeRepository;
+        this.outpostRepository = outpostRepository;
+        this.carRepository = carRepository;
+    }
 
     @Override
     public List<EmployeeTO> findEmployeeByOutpost(long outpostId) {

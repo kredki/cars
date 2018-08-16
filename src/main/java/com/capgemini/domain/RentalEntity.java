@@ -14,7 +14,7 @@ public class RentalEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "BRAND_NAME", nullable = false, length = 50)
     private String brandName;
     @Column(name = "START_DATE", nullable = false)
@@ -50,11 +50,11 @@ public class RentalEntity implements Serializable {
         this.cost = cost;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -135,7 +135,7 @@ public class RentalEntity implements Serializable {
     }
 
     public static class Builder {
-        private long id;
+        private Long id;
         private String brandName;
         private Date startDate;
         private Date endDate;
@@ -146,7 +146,7 @@ public class RentalEntity implements Serializable {
         private OutpostEntity startOutpost;
         private OutpostEntity endOutpost;
 
-        public Builder withId(long id) {
+        public Builder withId(Long id) {
             this.id = id;
             return this;
         }
