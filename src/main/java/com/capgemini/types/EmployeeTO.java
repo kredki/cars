@@ -1,5 +1,6 @@
 package com.capgemini.types;
 
+import com.capgemini.Exceptions.IncorrectObjectException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -53,7 +54,7 @@ public class EmployeeTO {
 
         private void checkBeforeBuild() {
             if (firstName == null || lastName == null || birthDate == null) {
-                throw new RuntimeException("Incorrect employee to be created");
+                throw new IncorrectObjectException("Incorrect employee to be created");
             }
         }
     }

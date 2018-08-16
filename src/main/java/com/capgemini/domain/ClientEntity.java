@@ -1,5 +1,7 @@
 package com.capgemini.domain;
 
+import com.capgemini.Exceptions.IncorrectObjectException;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -178,7 +180,7 @@ public class ClientEntity implements Serializable {
         private void checkBeforeBuild() {
             if (firstName == null || lastName == null || birthdate == null || telephone == null || cardNo == null
                     || email == null) {
-                throw new RuntimeException("Incorrect rental to be created");
+                throw new IncorrectObjectException("Incorrect rental to be created");
             }
         }
     }

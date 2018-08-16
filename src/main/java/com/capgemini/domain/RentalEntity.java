@@ -1,5 +1,7 @@
 package com.capgemini.domain;
 
+import com.capgemini.Exceptions.IncorrectObjectException;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -196,7 +198,7 @@ public class RentalEntity implements Serializable {
 
         private void checkBeforeBuild() {
             if (brandName == null || startDate == null || cost == null || car == null || client == null || startOutpost == null) {
-                throw new RuntimeException("Incorrect rental to be created");
+                throw new IncorrectObjectException("Incorrect rental to be created");
             }
         }
     }

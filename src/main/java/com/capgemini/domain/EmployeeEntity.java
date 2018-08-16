@@ -1,5 +1,7 @@
 package com.capgemini.domain;
 
+import com.capgemini.Exceptions.IncorrectObjectException;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -181,7 +183,7 @@ public class EmployeeEntity implements Serializable {
 
         private void checkBeforeBuild() {
             if (firstName == null || lastName == null || birthDate == null) {
-                throw new RuntimeException("Incorrect employee to be created");
+                throw new IncorrectObjectException("Incorrect employee to be created");
             }
         }
     }

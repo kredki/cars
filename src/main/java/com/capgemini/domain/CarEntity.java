@@ -1,5 +1,7 @@
 package com.capgemini.domain;
 
+import com.capgemini.Exceptions.IncorrectObjectException;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -221,14 +223,14 @@ public class CarEntity implements Serializable {
         }
 
         public CarEntity build() {
-            //checkBeforeBuild();
+            checkBeforeBuild();
             return new CarEntity(this);
         }
 
         private void checkBeforeBuild() {
             if (brandName == null || productionYear == 0 || engineCapacity == 0 || power == 0 || mileage == 0
                     || carType == null || color == null) {
-                throw new RuntimeException("Incorrect car to be created");
+                throw new IncorrectObjectException("Incorrect car to be created");
             }
 
         }

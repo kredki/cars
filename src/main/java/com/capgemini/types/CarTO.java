@@ -1,5 +1,6 @@
 package com.capgemini.types;
 
+import com.capgemini.Exceptions.IncorrectObjectException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -87,7 +88,7 @@ public class CarTO {
         private void checkBeforeBuild() {
             if (brandName == null || productionYear == 0 || engineCapacity == 0 || power == 0 || mileage == 0
                     || carType == null || color == null) {
-                throw new RuntimeException("Incorrect car to be created");
+                throw new IncorrectObjectException("Incorrect car to be created");
             }
         }
     }

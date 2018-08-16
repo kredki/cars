@@ -1,5 +1,6 @@
 package com.capgemini.types;
 
+import com.capgemini.Exceptions.IncorrectObjectException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -78,7 +79,7 @@ public class ClientTO {
         private void checkBeforeBuild() {
             if (firstName == null || lastName == null || birthdate == null || telephone == null || cardNo == null
                     || email == null) {
-                throw new RuntimeException("Incorrect rental to be created");
+                throw new IncorrectObjectException("Incorrect rental to be created");
             }
         }
     }

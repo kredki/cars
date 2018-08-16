@@ -1,5 +1,7 @@
 package com.capgemini.domain;
 
+import com.capgemini.Exceptions.IncorrectObjectException;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -160,7 +162,7 @@ public class OutpostEntity implements Serializable {
 
         private void checkBeforeBuild() {
             if (address == null || contactData == null) {
-                throw new RuntimeException("Incorrect outpost to be created");
+                throw new IncorrectObjectException("Incorrect outpost to be created");
             }
         }
     }

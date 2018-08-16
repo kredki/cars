@@ -1,6 +1,7 @@
 package com.capgemini.service;
 
 import com.capgemini.dao.CarDao;
+import com.capgemini.dao.EmployeeDao;
 import com.capgemini.domain.*;
 import com.capgemini.service.impl.CarServiceImpl;
 import com.capgemini.types.CarTO;
@@ -30,6 +31,8 @@ public class CarServiceTest {
     private CarServiceImpl carService;
     @Autowired
     private CarDao carDao;
+    @Autowired
+    private EmployeeDao employeeDao;
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -78,5 +81,37 @@ public class CarServiceTest {
         assertEquals(car2.getMileage(), car.getMileage());
         assertEquals(car2.getPower(), car.getPower());
         assertEquals(car2.getProductionYear(), car.getProductionYear());
+    }
+
+    @Test
+    public void shouldReturnCarByBrand() {
+        //given
+        String brand = "Opel";
+
+        //when
+        List<CarTO> result = carService.findCarByBrand(brand);
+
+        //then
+        assertEquals(1, result.size());
+        CarTO car = result.get(0);
+        assertEquals(car2.getEngineCapacity(), car.getEngineCapacity());
+        assertEquals(brand, car.getBrandName());
+        assertEquals(car2.getCarType(), car.getCarType());
+        assertEquals(car2.getColor(), car.getColor());
+        assertEquals(car2.getMileage(), car.getMileage());
+        assertEquals(car2.getPower(), car.getPower());
+        assertEquals(car2.getProductionYear(), car.getProductionYear());
+    }
+
+    @Test
+    public void shouldReturnCarByCaretaker() {
+        //given
+        long employeeId = employeeDao.findAll().get(0).getId();
+
+        //when
+        List<CarTO> result = carService.findCarByCaretaker(employeeId);
+
+        //then
+        assertEquals(2, result.size());
     }
 }

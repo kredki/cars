@@ -1,5 +1,6 @@
 package com.capgemini.types;
 
+import com.capgemini.Exceptions.IncorrectObjectException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -51,7 +52,7 @@ public class AddressTO {
 
         private void checkBeforeBuild() {
             if (street == null || no == null || city == null || postalCode == null) {
-                throw new RuntimeException("Incorrect address to be created");
+                throw new IncorrectObjectException("Incorrect address to be created");
             }
         }
     }

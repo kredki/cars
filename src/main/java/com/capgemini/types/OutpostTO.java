@@ -1,5 +1,6 @@
 package com.capgemini.types;
 
+import com.capgemini.Exceptions.IncorrectObjectException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,7 +44,7 @@ public class OutpostTO {
 
         private void checkBeforeBuild() {
             if (address == null || contactData == null) {
-                throw new RuntimeException("Incorrect outpost to be created");
+                throw new IncorrectObjectException("Incorrect outpost to be created");
             }
         }
     }

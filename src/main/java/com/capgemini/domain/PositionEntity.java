@@ -1,5 +1,7 @@
 package com.capgemini.domain;
 
+import com.capgemini.Exceptions.IncorrectObjectException;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -90,7 +92,7 @@ public class PositionEntity implements Serializable {
 
         private void checkBeforeBuild() {
             if (name == null) {
-                throw new RuntimeException("Incorrect position to be created");
+                throw new IncorrectObjectException("Incorrect position to be created");
             }
         }
     }

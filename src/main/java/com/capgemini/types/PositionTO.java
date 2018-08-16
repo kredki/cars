@@ -1,5 +1,6 @@
 package com.capgemini.types;
 
+import com.capgemini.Exceptions.IncorrectObjectException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,7 +36,7 @@ public class PositionTO {
 
         private void checkBeforeBuild() {
             if (name == null) {
-                throw new RuntimeException("Incorrect position to be created");
+                throw new IncorrectObjectException("Incorrect position to be created");
             }
         }
     }
