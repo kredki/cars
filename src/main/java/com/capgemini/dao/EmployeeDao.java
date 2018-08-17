@@ -21,7 +21,7 @@ public interface EmployeeDao extends Dao<EmployeeEntity, Long> {
      *
      * @param outpost
      * @param car
-     * @return Employees assigend to requested car and from requested outpost.
+     * @return Employees assigned to requested car and from requested outpost.
      */
     public List<EmployeeEntity> findCaretakerByOutpost(OutpostEntity outpost, CarEntity car);
 
@@ -31,4 +31,18 @@ public interface EmployeeDao extends Dao<EmployeeEntity, Long> {
      * @param car
      */
     public void addCar(long caretakerId, CarEntity car);
+
+    /**
+     *
+     * @param carId
+     * @return Employees assigned to requested car.
+     */
+    public List<EmployeeEntity> findCaretaker(Long carId);
+
+    /**
+     *
+     * @param positionId
+     * @return Employee of requested position.
+     */
+    public List<EmployeeEntity> findEmployeeByPosition(Long positionId);
 }

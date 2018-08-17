@@ -4,6 +4,7 @@ import com.capgemini.dao.EmployeeDao;
 import com.capgemini.domain.CarEntity;
 import com.capgemini.domain.EmployeeEntity;
 import com.capgemini.domain.OutpostEntity;
+import com.capgemini.domain.PositionEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
@@ -55,5 +56,33 @@ public class EmployeeDaoImpl extends AbstractDao<EmployeeEntity, Long> implement
         EmployeeEntity caretaker = query.getSingleResult();
         caretaker.addCar(car);
         entityManager.persist(caretaker);
+    }
+
+    /**
+     *
+     * @param carId
+     * @return Employees assigned to requested car.
+     */
+    @Override
+    public List<EmployeeEntity> findCaretaker(Long carId) {
+        CarEntity car = entityManager.getReference(CarEntity.class, carId);
+        TypedQuery<EmployeeEntity> query = entityManager.createQuery(
+                "select e from EmployeeEntity e where :car member of e.cars", EmployeeEntity.class);
+        query.setParameter("car", car);
+        return query.getResultList();
+    }
+
+    /**
+     *
+     * @param positionId
+     * @return Employee of requested position.
+     */
+    @Override
+    public List<EmployeeEntity> findEmployeeByPosition(Long positionId) {
+        PositionEntity position = entityManager.getReference(PositionEntity.class, positionId);
+        TypedQuery<EmployeeEntity> query = entityManager.createQuery(
+                "select e from EmployeeEntity e where :position = e.position", EmployeeEntity.class);
+        query.setParameter("position", position);
+        return query.getResultList();
     }
 }
