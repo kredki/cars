@@ -16,14 +16,14 @@ public class OutpostEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Embedded
-    private AddressEnity address;
+    private AddressInTable address;
     @Column(name = "CONTACT_DATA", nullable = false, length = 200)
     private String contactData;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "outpost", cascade = CascadeType.ALL)
     private Set<EmployeeEntity> employees = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "startOutpost", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "startOutpost", cascade = CascadeType.PERSIST)
     private Set<RentalEntity> startRentals = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "endOutpost", cascade = CascadeType.ALL)
@@ -32,7 +32,7 @@ public class OutpostEntity implements Serializable {
     public OutpostEntity() {
     }
 
-    public OutpostEntity(AddressEnity address, String contactData, Set<EmployeeEntity> employees,
+    public OutpostEntity(AddressInTable address, String contactData, Set<EmployeeEntity> employees,
                          Set<RentalEntity> startRentals, Set<RentalEntity> endRentals) {
         this.address = address;
         this.contactData = contactData;
@@ -41,7 +41,7 @@ public class OutpostEntity implements Serializable {
         this.endRentals = endRentals;
     }
 
-    public OutpostEntity(AddressEnity address, String contactData) {
+    public OutpostEntity(AddressInTable address, String contactData) {
         this.address = address;
         this.contactData = contactData;
         this.employees = new HashSet<>();
@@ -57,11 +57,11 @@ public class OutpostEntity implements Serializable {
         this.id = id;
     }
 
-    public AddressEnity getAddress() {
+    public AddressInTable getAddress() {
         return address;
     }
 
-    public void setAddress(AddressEnity address) {
+    public void setAddress(AddressInTable address) {
         this.address = address;
     }
 
@@ -142,7 +142,7 @@ public class OutpostEntity implements Serializable {
 
     public static class Builder {
         private Long id;
-        private AddressEnity address;
+        private AddressInTable address;
         private String contactData;
 
         private Set<EmployeeEntity> employees = new HashSet<>();
@@ -154,7 +154,7 @@ public class OutpostEntity implements Serializable {
             return this;
         }
 
-        public Builder withAddress(AddressEnity address) {
+        public Builder withAddress(AddressInTable address) {
             this.address = address;
             return this;
         }

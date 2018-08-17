@@ -1,10 +1,10 @@
 package com.capgemini.mappers;
 
-import com.capgemini.domain.AddressEnity;
+import com.capgemini.domain.AddressInTable;
 import com.capgemini.types.AddressTO;
 
 public class AddressMapper {
-    public static AddressTO toTo(AddressEnity address) {
+    public static AddressTO toTo(AddressInTable address) {
         if (address == null) {
             return null;
         }
@@ -13,12 +13,12 @@ public class AddressMapper {
                 .withPostalCode(address.getPostalCode()).withStreet(address.getStreet()).build();
     }
 
-    public static AddressEnity toEntity(AddressTO address) {
+    public static AddressInTable toEntity(AddressTO address) {
         if (address == null) {
             return null;
         }
 
-        return new AddressEnity.Builder().withCity(address.getCity()).withNo(address.getNo())
+        return new AddressInTable.Builder().withCity(address.getCity()).withNo(address.getNo())
                 .withPostalCode(address.getPostalCode()).withStreet(address.getStreet()).build();
     }
 }

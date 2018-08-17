@@ -1,7 +1,7 @@
 package com.capgemini.dao.impl;
 
 import com.capgemini.dao.EmployeeDao;
-import com.capgemini.domain.AddressEnity;
+import com.capgemini.domain.AddressInTable;
 import com.capgemini.domain.EmployeeEntity;
 import com.capgemini.domain.OutpostEntity;
 import com.capgemini.domain.PositionEntity;
@@ -39,7 +39,7 @@ public class OutpostDaoImplTest {
         PositionEntity position = new PositionEntity.Builder().withName("Sprzedawca").build();
         employee = new EmployeeEntity.Builder().withBirthDate(new Date()).withFirstName("Jan").withLastName("Nowak")
                 .withPosition(position).build();
-        AddressEnity address = new AddressEnity.Builder().withCity("city").withNo("no").withPostalCode("postal code")
+        AddressInTable address = new AddressInTable.Builder().withCity("city").withNo("no").withPostalCode("postal code")
                 .withStreet("street").build();
         outpost = new OutpostEntity.Builder().withAddress(address).withContactData("contact data").build();
 

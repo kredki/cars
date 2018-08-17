@@ -14,7 +14,7 @@ import javax.persistence.Embeddable;
 @AllArgsConstructor
 @Getter
 @Setter
-public class AddressEnity {
+public class AddressInTable {
     @Column(name = "STREET", nullable = false, length = 50)
     String street;
     @Column(name = "NO", nullable = false, length = 50)
@@ -24,7 +24,7 @@ public class AddressEnity {
     @Column(name = "POSTAL_CODE", nullable = false, length = 50)
     String postalCode;
 
-    public AddressEnity(Builder builder) {
+    public AddressInTable(Builder builder) {
         this.street = builder.street;
         this.no = builder.no;
         this.city = builder.city;
@@ -57,9 +57,9 @@ public class AddressEnity {
             return this;
         }
 
-        public AddressEnity build() {
+        public AddressInTable build() {
             checkBeforeBuild();
-            return new AddressEnity(this);
+            return new AddressInTable(this);
         }
 
         private void checkBeforeBuild() {

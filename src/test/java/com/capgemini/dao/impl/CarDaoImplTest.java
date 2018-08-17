@@ -51,7 +51,7 @@ public class CarDaoImplTest {
     @Before
     public void init() {
         position = new PositionEntity("Sprzedawca");
-        AddressEnity address = new AddressEnity("street", "no", "city", "postal code");
+        AddressInTable address = new AddressInTable("street", "no", "city", "postal code");
         outpost = new OutpostEntity(address, "contactData");
         employee = new EmployeeEntity("Jan", "Kowalski", new Date(), outpost,
                 position);
@@ -74,7 +74,9 @@ public class CarDaoImplTest {
                 .withEngineCapacity(1500).withMileage(30000).withPower(100).withProductionYear(2014).withColor("red")
                 .withRentals(new HashSet<RentalEntity>()).build();
         rental = new RentalEntity.Builder().withCost(new BigDecimal("123.00")).withEndDate(null).withStartDate(new Date())
-                .withCar(car3).withClient(client).withEndOutpost(null).withStartOutpost(outpost).build();
+                .withCar(car3)
+                .withClient(client).withEndOutpost(null).withStartOutpost(outpost)
+                .build();
         car3.addRental(rental);
         employee.addCar(car2);
         outpost.addStartRental(rental);

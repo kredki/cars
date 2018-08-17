@@ -26,15 +26,15 @@ public class RentalEntity implements Serializable {
     @JoinColumn(name = "CAR_ID", nullable = false)
     private CarEntity car;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.LAZY/*, cascade = {CascadeType.ALL}*/)
     @JoinColumn(name = "CLIENT_ID", nullable = false)
     private ClientEntity client;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY/*, cascade = CascadeType.ALL*/)
     @JoinColumn(name = "START_OUTPOST_ID", nullable = false)
     private OutpostEntity startOutpost;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY/*, cascade = CascadeType.ALL*/)
     @JoinColumn(name = "END_OUTPOST_ID")
     private OutpostEntity endOutpost;
 

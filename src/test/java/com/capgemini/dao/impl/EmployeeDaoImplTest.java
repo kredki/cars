@@ -42,7 +42,7 @@ public class EmployeeDaoImplTest {
     @Before
     public void setup() {
         position = new PositionEntity("Sprzedawca");
-        AddressEnity address = new AddressEnity("street", "no", "city", "postal code");
+        AddressInTable address = new AddressInTable("street", "no", "city", "postal code");
         outpost = new OutpostEntity(address, "contactData");
         outpost2 = new OutpostEntity(address, "contactData2");
         employee1 = new EmployeeEntity("Jan", "Kowalski", new Date(), outpost, position);

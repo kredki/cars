@@ -1,6 +1,6 @@
 package com.capgemini.mappers;
 
-import com.capgemini.domain.AddressEnity;
+import com.capgemini.domain.AddressInTable;
 import com.capgemini.domain.OutpostEntity;
 import com.capgemini.types.AddressTO;
 import com.capgemini.types.OutpostTO;
@@ -23,7 +23,7 @@ public class OutpostMapper {
         if (outpost == null) {
             return null;
         }
-        AddressEnity address = AddressMapper.toEntity(outpost.getAddress());
+        AddressInTable address = AddressMapper.toEntity(outpost.getAddress());
 
         return new OutpostEntity.Builder().withAddress(address).withContactData(outpost.getContactData())
                 .withId(outpost.getId()).build();

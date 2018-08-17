@@ -1,9 +1,8 @@
-package com.capgemini.service;
+package com.capgemini.service.impl;
 
 import com.capgemini.dao.CarDao;
 import com.capgemini.dao.EmployeeDao;
 import com.capgemini.domain.*;
-import com.capgemini.service.impl.CarServiceImpl;
 import com.capgemini.types.CarTO;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +23,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest(properties = "spring.profiles.active=hsql")
 @Transactional
-public class CarServiceTest {
+public class CarServiceImplTest {
     @Autowired
     private CarServiceImpl carService;
     @Autowired
@@ -43,10 +42,9 @@ public class CarServiceTest {
     @Before
     public void setup() {
         position = new PositionEntity("Sprzedawca");
-        AddressEnity address = new AddressEnity("street", "no", "city", "postal code");
+        AddressInTable address = new AddressInTable("street", "no", "city", "postal code");
         outpost = new OutpostEntity(address, "contactData");
-        employee = new EmployeeEntity("Jan", "Kowalski", new Date(), outpost,
-                position);
+        employee = new EmployeeEntity("Jan", "Kowalski", new Date(), outpost, position);
         car1 = new CarEntity.CarEntityBuilder().withBrandName("BMW").withCarType("Coupe")
                 .withEmployee(employee)
                 .withEngineCapacity(2000).withMileage(20000).withPower(120).withProductionYear(2015).withColor("blue")
