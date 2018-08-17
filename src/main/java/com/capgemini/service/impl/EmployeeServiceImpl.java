@@ -74,7 +74,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return Employees for requested search criteria.
      */
     @Override
-    public List<EmployeeTO> findEmployeeByOutpost(EmployeeSearchCriteriaTO searchCriteria) {
+    public List<EmployeeTO> findEmployeeByCriteria(EmployeeSearchCriteriaTO searchCriteria) {
         StringBuilder query = new StringBuilder();
         query.append("select e from EmployeeEntity e where ");
         boolean canAddAnd = false;
@@ -90,7 +90,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 query.append(" and ");
             }
             canAddAnd = true;
-            query.append(":outpostId = outpost.id");
+            query.append(":outpost = outpost");
         }
 
         Long positionId = searchCriteria.getPositionId();

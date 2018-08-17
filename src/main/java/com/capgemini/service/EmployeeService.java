@@ -36,5 +36,5 @@ public interface EmployeeService {
      * @param searchCriteria Stores outpost id, car id, position id. Null criteria is not search for. All criteria can be null.
      * @return Employees for requested search criteria.
      */
-    public List<EmployeeTO> findEmployeeByOutpost(EmployeeSearchCriteriaTO searchCriteria);
+    public List<EmployeeTO> findEmployeeByCriteria(EmployeeSearchCriteriaTO searchCriteria);
 }
