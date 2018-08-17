@@ -97,14 +97,38 @@ public class OutpostEntity implements Serializable {
         this.endRentals = endRentals;
     }
 
+    /**
+     * Add employee to outpost.
+     * @param employee
+     */
     public void addEmployee(EmployeeEntity employee) {
         this.employees.add(employee);
         employee.setOutpost(this);
     }
 
+    /**
+     * Remove employee from outpost.
+     * @param employee
+     */
     public void removeEmployee(EmployeeEntity employee) {
         this.employees.remove(employee);
         employee.setOutpost(null);
+    }
+
+    /**
+     * Add start rentals to outpost.
+     * @param rental
+     */
+    public void addStartRental(RentalEntity rental) {
+        this.startRentals.add(rental);
+    }
+
+    /**
+     * Add end rental to outpost.
+     * @param rental
+     */
+    public void addEndRental(RentalEntity rental) {
+        this.endRentals.add(rental);
     }
 
     public OutpostEntity(Builder builder) {

@@ -2,6 +2,7 @@ package com.capgemini.dao.impl;
 
 import com.capgemini.dao.ClientDao;
 import com.capgemini.dao.EmployeeDao;
+import com.capgemini.dao.PositioDao;
 import com.capgemini.dao.RentalDao;
 import com.capgemini.domain.*;
 import org.junit.Before;
@@ -19,6 +20,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -35,6 +37,8 @@ public class CarDaoImplTest {
     private ClientDao clientDAO;
     @Autowired
     private RentalDao rentalDao;
+    @Autowired
+    private PositioDao positioDao;
 
     private CarEntity car1;
     private CarEntity car2;
@@ -51,6 +55,7 @@ public class CarDaoImplTest {
         outpost = new OutpostEntity(address, "contactData");
         employee = new EmployeeEntity("Jan", "Kowalski", new Date(), outpost,
                 position);
+        employee = employeeDao.save(employee);
         car1 = new CarEntity.CarEntityBuilder().withBrandName("BMW").withCarType("Coupe")
                 .withEmployee(employee)
                 .withEngineCapacity(2000).withMileage(20000).withPower(120).withProductionYear(2015).withColor("blue")
@@ -72,6 +77,7 @@ public class CarDaoImplTest {
                 .withCar(car3).withClient(client).withEndOutpost(null).withStartOutpost(outpost).build();
         car3.addRental(rental);
         employee.addCar(car2);
+        outpost.addStartRental(rental);
         car1 = carDao.save(car1);
         car2 = carDao.save(car2);
         car3 = carDao.save(car3);
@@ -120,7 +126,7 @@ public class CarDaoImplTest {
     @Test
     public void shouldReturnCarByCaretaker() {
         //given
-        long employeeId = employeeDao.findAll().get(0).getId();
+        long employeeId = employee.getId();
 
         //when
         List<CarEntity> result = carDao.findCarByCaretaker(employeeId);
@@ -133,12 +139,19 @@ public class CarDaoImplTest {
     public void shouldRemoveCarAndRentals() {
         //given
         long carQtyBefore = carDao.count();
-        RentalEntity rental = rentalDao.findAll().get(0);
+        long positionQtyBefore = positioDao.count();
+        long employeeQtyBefore = employeeDao.count();
+        long rentalQtyBefore = rentalDao.count();
+        long clientQtyBefore = clientDAO.count();
 
         //when
         carDao.delete(car3.getId());
 
         //then
         assertEquals(carQtyBefore - 1, carDao.count());
+        assertEquals(positionQtyBefore, positioDao.count());
+        assertEquals(employeeQtyBefore, employeeDao.count());
+        assertThat(rentalQtyBefore).isGreaterThan(rentalDao.count());
+        assertEquals(clientQtyBefore, employeeDao.count());
     }
 }

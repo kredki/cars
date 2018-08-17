@@ -30,10 +30,10 @@ public class CarEntity implements Serializable {
     @Column(name = "COLOR", nullable = false, length = 50)
     private String color;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RentalEntity> rentals = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "cars", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "cars")
     private Set<EmployeeEntity> employees = new HashSet<>();
 
     public CarEntity() {

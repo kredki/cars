@@ -29,7 +29,7 @@ public class ClientEntity implements Serializable {
     @Column(name = "EMAIL", nullable = false, length = 254)
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade = CascadeType.ALL)
     private Set<RentalEntity> rentals = new HashSet<>();
 
     public ClientEntity() {

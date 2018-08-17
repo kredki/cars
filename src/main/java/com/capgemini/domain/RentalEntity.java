@@ -22,19 +22,19 @@ public class RentalEntity implements Serializable {
     @Column(name = "COST", nullable = false)
     private BigDecimal cost;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CAR_ID", nullable = false)
     private CarEntity car;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "CLIENT_ID", nullable = false)
     private ClientEntity client;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "START_OUTPOST_ID", nullable = false)
     private OutpostEntity startOutpost;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "END_OUTPOST_ID")
     private OutpostEntity endOutpost;
 
