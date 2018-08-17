@@ -11,14 +11,12 @@ import java.util.Date;
 @Setter
 public class RentalTO {
     private Long id;
-    private String brandName;
     private Date startDate;
     private Date endDate;
     private BigDecimal cost;
 
     public RentalTO(Builder builder) {
         this.id = builder.id;
-        this.brandName = builder.brandName;
         this.startDate = builder.startDate;
         this.endDate = builder.endDate;
         this.cost = builder.cost;
@@ -26,18 +24,12 @@ public class RentalTO {
 
     public static class Builder {
         private Long id;
-        private String brandName;
         private Date startDate;
         private Date endDate;
         private BigDecimal cost;
 
         public Builder withId(Long id) {
             this.id = id;
-            return this;
-        }
-
-        public Builder withBrandName(String brandName) {
-            this.brandName = brandName;
             return this;
         }
 
@@ -62,7 +54,7 @@ public class RentalTO {
         }
 
         private void checkBeforeBuild() {
-            if (brandName == null || startDate == null || cost == null) {
+            if (startDate == null || cost == null) {
                 throw new IncorrectObjectException("Incorrect rental to be created");
             }
         }

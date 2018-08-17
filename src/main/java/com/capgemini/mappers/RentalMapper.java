@@ -12,8 +12,7 @@ public class RentalMapper {
             return null;
         }
 
-        return new RentalTO.Builder().withBrandName(rental.getBrandName())
-                .withCost(rental.getCost()).withEndDate(rental.getEndDate())
+        return new RentalTO.Builder().withCost(rental.getCost()).withEndDate(rental.getEndDate())
                 .withId(rental.getId()).withStartDate(rental.getStartDate()).build();
     }
 
@@ -22,8 +21,7 @@ public class RentalMapper {
             return null;
         }
 
-        return new RentalEntity.Builder().withBrandName(rental.getBrandName())
-                .withCost(rental.getCost()).withEndDate(rental.getEndDate())
+        return new RentalEntity.Builder().withCost(rental.getCost()).withEndDate(rental.getEndDate())
                 .withId(rental.getId()).withStartDate(rental.getStartDate()).build();
     }
 

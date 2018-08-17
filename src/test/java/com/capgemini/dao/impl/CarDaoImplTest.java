@@ -1,6 +1,8 @@
 package com.capgemini.dao.impl;
 
+import com.capgemini.dao.ClientDao;
 import com.capgemini.dao.EmployeeDao;
+import com.capgemini.dao.RentalDao;
 import com.capgemini.domain.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -28,12 +31,18 @@ public class CarDaoImplTest {
     private CarDaoImpl carDao;
     @Autowired
     private EmployeeDao employeeDao;
+    @Autowired
+    private ClientDao clientDAO;
+    @Autowired
+    private RentalDao rentalDao;
 
     private CarEntity car1;
     private CarEntity car2;
+    private CarEntity car3;
     private EmployeeEntity employee;
     private OutpostEntity outpost;
     private PositionEntity position;
+    private RentalEntity rental;
 
     @Before
     public void init() {
@@ -51,9 +60,21 @@ public class CarDaoImplTest {
                 .withEmployee(employee)
                 .withEngineCapacity(1500).withMileage(30000).withPower(100).withProductionYear(2014).withColor("red")
                 .withRentals(new HashSet<RentalEntity>()).build();
+
+        ClientEntity client = new ClientEntity.Builder().withBirthdate(new Date()).withCardNo("no").withEmail("mail")
+                .withFirstName("first name").withLastName("last name").withTelephone("tel").build();
+        client = clientDAO.save(client);
+        car3 = new CarEntity.CarEntityBuilder().withBrandName("VW").withCarType("some type")
+                .withEmployee(employee)
+                .withEngineCapacity(1500).withMileage(30000).withPower(100).withProductionYear(2014).withColor("red")
+                .withRentals(new HashSet<RentalEntity>()).build();
+        rental = new RentalEntity.Builder().withCost(new BigDecimal("123.00")).withEndDate(null).withStartDate(new Date())
+                .withCar(car3).withClient(client).withEndOutpost(null).withStartOutpost(outpost).build();
+        car3.addRental(rental);
         employee.addCar(car2);
-        carDao.save(car1);
-        carDao.save(car2);
+        car1 = carDao.save(car1);
+        car2 = carDao.save(car2);
+        car3 = carDao.save(car3);
     }
 
     @Test
@@ -106,5 +127,18 @@ public class CarDaoImplTest {
 
         //then
         assertEquals(2, result.size());
+    }
+
+    @Test
+    public void shouldRemoveCarAndRentals() {
+        //given
+        long carQtyBefore = carDao.count();
+        RentalEntity rental = rentalDao.findAll().get(0);
+
+        //when
+        carDao.delete(car3.getId());
+
+        //then
+        assertEquals(carQtyBefore - 1, carDao.count());
     }
 }

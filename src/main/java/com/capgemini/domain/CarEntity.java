@@ -145,6 +145,11 @@ public class CarEntity implements Serializable {
         this.employees = employees;
     }
 
+    public void addRental(RentalEntity rental) {
+        this.rentals.add(rental);
+        rental.setCar(this);
+    }
+
     public static class CarEntityBuilder {
         private Long id;
         private String brandName;

@@ -15,8 +15,6 @@ public class RentalEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "BRAND_NAME", nullable = false, length = 50)
-    private String brandName;
     @Column(name = "START_DATE", nullable = false)
     private Date startDate;
     @Column(name = "END_DATE")
@@ -43,8 +41,7 @@ public class RentalEntity implements Serializable {
     public RentalEntity() {
     }
 
-    public RentalEntity(String brandName, Date startDate, Date endDate, BigDecimal cost) {
-        this.brandName = brandName;
+    public RentalEntity(Date startDate, Date endDate, BigDecimal cost) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.cost = cost;
@@ -56,14 +53,6 @@ public class RentalEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getBrandName() {
-        return brandName;
-    }
-
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
     }
 
     public Date getStartDate() {
@@ -124,7 +113,6 @@ public class RentalEntity implements Serializable {
 
     public RentalEntity(Builder builder) {
         this.id = builder.id;
-        this.brandName = builder.brandName;
         this.startDate = builder.startDate;
         this.endDate = builder.endDate;
         this.cost = builder.cost;
@@ -136,7 +124,6 @@ public class RentalEntity implements Serializable {
 
     public static class Builder {
         private Long id;
-        private String brandName;
         private Date startDate;
         private Date endDate;
         private BigDecimal cost;
@@ -148,11 +135,6 @@ public class RentalEntity implements Serializable {
 
         public Builder withId(Long id) {
             this.id = id;
-            return this;
-        }
-
-        public Builder withBrandName(String brandName) {
-            this.brandName = brandName;
             return this;
         }
 
@@ -197,7 +179,7 @@ public class RentalEntity implements Serializable {
         }
 
         private void checkBeforeBuild() {
-            if (brandName == null || startDate == null || cost == null || car == null || client == null || startOutpost == null) {
+            if (startDate == null || cost == null || car == null || client == null || startOutpost == null) {
                 throw new IncorrectObjectException("Incorrect rental to be created");
             }
         }
