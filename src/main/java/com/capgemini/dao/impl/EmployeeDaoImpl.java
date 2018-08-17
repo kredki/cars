@@ -85,4 +85,24 @@ public class EmployeeDaoImpl extends AbstractDao<EmployeeEntity, Long> implement
         query.setParameter("position", position);
         return query.getResultList();
     }
+
+    /**
+     * Find employees by search criteria.
+     * @param queryString
+     * @param carId
+     * @param outpostId
+     * @param positionId
+     * @return Employees by search criteria.
+     */
+    @Override
+    public List<EmployeeEntity> findEmployeeBySearchCriteria(String queryString, long carId, long outpostId, long positionId) {
+        PositionEntity position = entityManager.getReference(PositionEntity.class, positionId);
+        CarEntity car = entityManager.getReference(CarEntity.class, carId);
+        OutpostEntity outpost = entityManager.getReference(OutpostEntity.class, outpostId);
+        TypedQuery<EmployeeEntity> query = entityManager.createQuery(queryString, EmployeeEntity.class);
+        query.setParameter("position", position);
+        query.setParameter("car", car);
+        query.setParameter("outpost", outpost);
+        return query.getResultList();
+    }
 }

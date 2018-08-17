@@ -75,61 +75,38 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public List<EmployeeTO> findEmployeeByOutpost(EmployeeSearchCriteriaTO searchCriteria) {
-        List<EmployeeTO> result = new ArrayList<>();
+        StringBuilder query = new StringBuilder();
+        query.append("select e from EmployeeEntity e where ");
+        boolean canAddAnd = false;
         Long carId = searchCriteria.getCarId();
         if(carId != null) {
-            result = addCaretakers(result, carId);
+            canAddAnd = true;
+            query.append(":car member of e.cars");
         }
+
         Long outpostId = searchCriteria.getOutpostId();
         if(outpostId != null) {
-            result = addOutpostEmployees(result, outpostId);
+            if(canAddAnd) {
+                query.append(" and ");
+            }
+            canAddAnd = true;
+            query.append(":outpostId = outpost.id");
         }
+
         Long positionId = searchCriteria.getPositionId();
         if(positionId != null) {
-            result = addEmployeesOfPosition(result, positionId);
-        }
-        return result;
-    }
-
-    private List<EmployeeTO> addCaretakers(List<EmployeeTO> employees, Long carId) {
-        List<EmployeeTO> selectedEmployees = EmployeeMapper.map2TOs(employeeRepository.findCaretaker(carId));
-        List<EmployeeTO> result = new ArrayList<>();
-        for (EmployeeTO e : selectedEmployees) {
-            for (EmployeeTO e2 : employees) {
-                if(e2.getId() == e.getId()) {
-                    result.add(e);
-                    break;
-                }
+            if(canAddAnd) {
+                query.append(" and ");
             }
+            canAddAnd = true;
+            query.append(":position = e.position");
         }
-        return result;
-    }
 
-    private List<EmployeeTO> addOutpostEmployees(List<EmployeeTO> employees, Long outpostId) {
-        List<EmployeeTO> selectedEmployees = EmployeeMapper.map2TOs(employeeRepository.findEmployeeByOutpost(outpostId));
-        List<EmployeeTO> result = new ArrayList<>();
-        for (EmployeeTO e : selectedEmployees) {
-            for (EmployeeTO e2 : employees) {
-                if(e2.getId() == e.getId()) {
-                    result.add(e);
-                    break;
-                }
-            }
+        if(canAddAnd) {
+            return EmployeeMapper.map2TOs(employeeRepository.findEmployeeBySearchCriteria(query.toString(), carId,
+                    outpostId, positionId));
+        } else {
+            return new ArrayList<>();
         }
-        return result;
-    }
-
-    private List<EmployeeTO> addEmployeesOfPosition(List<EmployeeTO> employees, Long positionId) {
-        List<EmployeeTO> selectedEmployees = EmployeeMapper.map2TOs(employeeRepository.findEmployeeByPosition(positionId));
-        List<EmployeeTO> result = new ArrayList<>();
-        for (EmployeeTO e : selectedEmployees) {
-            for (EmployeeTO e2 : employees) {
-                if(e2.getId() == e.getId()) {
-                    result.add(e);
-                    break;
-                }
-            }
-        }
-        return result;
     }
 }
