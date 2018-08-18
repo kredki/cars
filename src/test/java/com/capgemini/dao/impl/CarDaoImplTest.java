@@ -1,9 +1,6 @@
 package com.capgemini.dao.impl;
 
-import com.capgemini.dao.ClientDao;
-import com.capgemini.dao.EmployeeDao;
-import com.capgemini.dao.PositioDao;
-import com.capgemini.dao.RentalDao;
+import com.capgemini.dao.*;
 import com.capgemini.domain.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +36,8 @@ public class CarDaoImplTest {
     private RentalDao rentalDao;
     @Autowired
     private PositioDao positioDao;
+    @Autowired
+    OutpostDao outpostDao;
 
     private CarEntity car1;
     private CarEntity car2;
@@ -51,6 +50,7 @@ public class CarDaoImplTest {
     @Before
     public void init() {
         position = new PositionEntity("Sprzedawca");
+        positioDao.save(position);
         AddressInTable address = new AddressInTable("street", "no", "city", "postal code");
         outpost = new OutpostEntity(address, "contactData");
         employee = new EmployeeEntity("Jan", "Kowalski", new Date(), outpost,
@@ -80,6 +80,7 @@ public class CarDaoImplTest {
         car3.addRental(rental);
         employee.addCar(car2);
         outpost.addStartRental(rental);
+        outpostDao.save(outpost);
         car1 = carDao.save(car1);
         car2 = carDao.save(car2);
         car3 = carDao.save(car3);

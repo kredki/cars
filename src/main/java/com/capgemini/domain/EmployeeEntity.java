@@ -23,15 +23,15 @@ public class EmployeeEntity implements Serializable {
     @Column(name = "BIRTH_DATE", nullable = false)
     private Date birthDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY/*, cascade = CascadeType.PERSIST*/)
     @JoinColumn(name = "OUTPOST_ID")
     private OutpostEntity outpost;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY/*, cascade = CascadeType.PERSIST*/)
     @JoinColumn(name = "POSITION_ID", nullable = false)
     private PositionEntity position;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY/*, cascade = CascadeType.PERSIST*/)
     @JoinTable(name = "CARETAKERS",
             joinColumns = {@JoinColumn(name = "EMPLOYEE_ID", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "CAR_ID", nullable = false, updatable = false)}

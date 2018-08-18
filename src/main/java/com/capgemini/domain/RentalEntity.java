@@ -22,7 +22,7 @@ public class RentalEntity implements Serializable {
     @Column(name = "COST", nullable = false)
     private BigDecimal cost;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "CAR_ID", nullable = false)
     private CarEntity car;
 

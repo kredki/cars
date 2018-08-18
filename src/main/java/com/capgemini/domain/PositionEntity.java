@@ -18,7 +18,7 @@ public class PositionEntity implements Serializable {
     @Column(name = "NAME", nullable = false, length = 100)
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "position", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "position"/*, cascade = CascadeType.ALL*/)
     private Set<EmployeeEntity> employees = new HashSet<>();
 
     public PositionEntity() {

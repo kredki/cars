@@ -30,7 +30,7 @@ public class CarEntity implements Serializable {
     @Column(name = "COLOR", nullable = false, length = 50)
     private String color;
 
-    @OneToMany(fetch = FetchType.LAZY, /*cascade = CascadeType.ALL, */mappedBy = "car")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "car")
     private Set<RentalEntity> rentals = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "cars")
