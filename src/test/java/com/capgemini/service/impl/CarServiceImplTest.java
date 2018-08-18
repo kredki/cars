@@ -57,6 +57,7 @@ public class CarServiceImplTest {
         employee.addCar(car2);
         carDao.save(car1);
         carDao.save(car2);
+        employeeDao.save(employee);
     }
 
     @Test
