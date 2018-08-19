@@ -152,4 +152,77 @@ public class EmployeeServiceImplTest {
         assertTrue(ids.contains(employee4.getId()));
         assertTrue(ids.contains(employee5.getId()));
     }
+
+    @Test
+    public void shouldFindEmployeeByOutpost2() {
+        //given
+        EmployeeSearchCriteriaTO criteria = new EmployeeSearchCriteriaTO(outpost2.getId(), null, null);
+
+        //when
+        List<EmployeeTO> result = employeeService.findEmployeeByCriteria(criteria);
+
+        //then
+        assertEquals(3, result.size());
+        List<Long> ids = result.stream().map(x -> x.getId()).collect(Collectors.toList());
+        assertTrue(ids.contains(employee3.getId()));
+        assertTrue(ids.contains(employee4.getId()));
+        assertTrue(ids.contains(employee5.getId()));
+    }
+
+    @Test
+    public void shouldFindEmptyList() {
+        //given
+        EmployeeSearchCriteriaTO criteria = new EmployeeSearchCriteriaTO(null, null, null);
+
+        //when
+        List<EmployeeTO> result = employeeService.findEmployeeByCriteria(criteria);
+
+        //then
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void shouldFindEmployeeByOuytpostAndPosition() {
+        //given
+        EmployeeSearchCriteriaTO criteria = new EmployeeSearchCriteriaTO(outpost2.getId(), null, position2.getId());
+
+        //when
+        List<EmployeeTO> result = employeeService.findEmployeeByCriteria(criteria);
+
+        //then
+        assertEquals(2, result.size());
+        List<Long> ids = result.stream().map(x -> x.getId()).collect(Collectors.toList());
+        assertTrue(ids.contains(employee3.getId()));
+        assertTrue(ids.contains(employee4.getId()));
+    }
+
+    @Test
+    public void shouldFindEmployeeByPosition() {
+        //given
+        EmployeeSearchCriteriaTO criteria = new EmployeeSearchCriteriaTO(null, null, position2.getId());
+
+        //when
+        List<EmployeeTO> result = employeeService.findEmployeeByCriteria(criteria);
+
+        //then
+        assertEquals(2, result.size());
+        List<Long> ids = result.stream().map(x -> x.getId()).collect(Collectors.toList());
+        assertTrue(ids.contains(employee3.getId()));
+        assertTrue(ids.contains(employee4.getId()));
+    }
+
+    @Test
+    public void shouldFindEmployeeByCar() {
+        //given
+        EmployeeSearchCriteriaTO criteria = new EmployeeSearchCriteriaTO(null, car2.getId(), null);
+
+        //when
+        List<EmployeeTO> result = employeeService.findEmployeeByCriteria(criteria);
+
+        //then
+        assertEquals(2, result.size());
+        List<Long> ids = result.stream().map(x -> x.getId()).collect(Collectors.toList());
+        assertTrue(ids.contains(employee4.getId()));
+        assertTrue(ids.contains(employee5.getId()));
+    }
 }
