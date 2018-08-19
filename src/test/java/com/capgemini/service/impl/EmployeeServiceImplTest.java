@@ -148,7 +148,6 @@ public class EmployeeServiceImplTest {
 
         //then
         assertEquals(2, result.size());
-        EmployeeTO employee = result.get(0);
         List<Long> ids = result.stream().map(x -> x.getId()).collect(Collectors.toList());
         assertTrue(ids.contains(employee4.getId()));
         assertTrue(ids.contains(employee5.getId()));

@@ -95,14 +95,29 @@ public class EmployeeDaoImpl extends AbstractDao<EmployeeEntity, Long> implement
      * @return Employees by search criteria.
      */
     @Override
-    public List<EmployeeEntity> findEmployeeBySearchCriteria(String queryString, long carId, long outpostId, long positionId) {
-        PositionEntity position = entityManager.getReference(PositionEntity.class, positionId);
-        CarEntity car = entityManager.getReference(CarEntity.class, carId);
-        OutpostEntity outpost = entityManager.getReference(OutpostEntity.class, outpostId);
+    public List<EmployeeEntity> findEmployeeBySearchCriteria(String queryString, Long carId, Long outpostId, Long positionId) {
+        PositionEntity position = null;
+        if (positionId != null) {
+            position = entityManager.getReference(PositionEntity.class, positionId);
+        }
+        CarEntity car = null;
+        if (carId != null) {
+            car = entityManager.getReference(CarEntity.class, carId);
+        }
+        OutpostEntity outpost = null;
+        if (outpostId != null) {
+            outpost = entityManager.getReference(OutpostEntity.class, outpostId);
+        }
         TypedQuery<EmployeeEntity> query = entityManager.createQuery(queryString, EmployeeEntity.class);
-        query.setParameter("position", position);
-        query.setParameter("car", car);
-        query.setParameter("outpost", outpost);
+        if (position != null) {
+            query.setParameter("position", position);
+        }
+        if (car != null) {
+            query.setParameter("car", car);
+        }
+        if (outpost != null) {
+            query.setParameter("outpost", outpost);
+        }
         return query.getResultList();
     }
 }

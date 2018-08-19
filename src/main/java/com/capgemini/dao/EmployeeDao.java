@@ -54,5 +54,5 @@ public interface EmployeeDao extends Dao<EmployeeEntity, Long> {
      * @param positionId
      * @return Employees by search criteria.
      */
-    public List<EmployeeEntity> findEmployeeBySearchCriteria(String queryString, long carId, long outpostId, long positionId);
+    public List<EmployeeEntity> findEmployeeBySearchCriteria(String queryString, Long carId, Long outpostId, Long positionId);
 }
