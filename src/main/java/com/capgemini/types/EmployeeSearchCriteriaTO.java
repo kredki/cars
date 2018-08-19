@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * TO for employee seatch criteria
+ */
 @Getter
 @Setter
 @AllArgsConstructor

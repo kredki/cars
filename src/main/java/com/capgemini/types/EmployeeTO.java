@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import java.util.Date;
 
+/**
+ * TO for employee
+ */
 @Getter
 @Setter
 public class EmployeeTO {

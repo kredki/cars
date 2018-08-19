@@ -7,6 +7,9 @@ import com.capgemini.service.OutpostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Outpost Service implementation
+ */
 @Service
 public class OutpostServiceImpl implements OutpostService {
     OutpostDao outpostRepository;

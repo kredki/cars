@@ -4,6 +4,9 @@ import com.capgemini.Exceptions.IncorrectObjectException;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * TO for position
+ */
 @Getter
 @Setter
 public class PositionTO {

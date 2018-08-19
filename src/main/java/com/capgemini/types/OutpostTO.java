@@ -4,6 +4,9 @@ import com.capgemini.Exceptions.IncorrectObjectException;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * TO for outpost
+ */
 @Getter
 @Setter
 public class OutpostTO {

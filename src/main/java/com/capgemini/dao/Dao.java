@@ -3,6 +3,11 @@ package com.capgemini.dao;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * DAO
+ * @param <T> dao interface
+ * @param <K> id
+ */
 public interface Dao<T, K extends Serializable> {
 
     T save(T entity);

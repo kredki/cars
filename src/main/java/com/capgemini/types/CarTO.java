@@ -4,6 +4,9 @@ import com.capgemini.Exceptions.IncorrectObjectException;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * TO for car
+ */
 @Getter
 @Setter
 public class CarTO {

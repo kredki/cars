@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import java.util.Date;
 
+/**
+ * TO for client
+ */
 @Getter
 @Setter
 public class ClientTO {

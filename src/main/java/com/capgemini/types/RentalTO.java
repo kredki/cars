@@ -7,6 +7,9 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * TO for rental
+ */
 @Getter
 @Setter
 public class RentalTO {
