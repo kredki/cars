@@ -6,6 +6,7 @@ import com.capgemini.domain.EmployeeEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -51,6 +52,24 @@ public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
         TypedQuery<CarEntity> query = entityManager.createQuery(
                 "select car from CarEntity car where :caretaker member of car.employees", CarEntity.class);
         query.setParameter("caretaker", employee);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<CarEntity> findCarRentByMoreThan(int clientQty) {
+        TypedQuery<CarEntity> query = entityManager.createQuery(
+                "select car from CarEntity car join (select r, c from RentalEntity r) r1 where r1.car=car", CarEntity.class);
+        query.setParameter("clientQty", clientQty);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<CarEntity> findCarRentedInPeriod(Date from, Date to) {
+        TypedQuery<CarEntity> query = entityManager.createQuery(
+                "select car from CarEntity car join car.rentals r where r.startDate >= :from and r.endDate <= :to",
+                CarEntity.class);
+        query.setParameter("from", from);
+        query.setParameter("to", to);
         return query.getResultList();
     }
 

@@ -13,7 +13,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 
@@ -45,10 +47,16 @@ public class CarDaoImplTest {
     private EmployeeEntity employee;
     private OutpostEntity outpost;
     private PositionEntity position;
-    private RentalEntity rental;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     @Before
     public void init() {
+        Date from = new GregorianCalendar(2018, 0, 1).getTime();
+        Date to = new GregorianCalendar(2018, 0, 2).getTime();
+        Date from2 = new GregorianCalendar(2018, 0, 2).getTime();
+        Date to2 = new GregorianCalendar(2018, 0, 3).getTime();
+        Date from3 = new GregorianCalendar(2017, 0, 1).getTime();
+        Date to3 = new GregorianCalendar(2018, 0, 1).getTime();
         position = new PositionEntity("Sprzedawca");
         positionDao.save(position);
         AddressInTable address = new AddressInTable("street", "no", "city", "postal code");
@@ -73,13 +81,26 @@ public class CarDaoImplTest {
                 .withEmployee(employee)
                 .withEngineCapacity(1500).withMileage(30000).withPower(100).withProductionYear(2014).withColor("red")
                 .withRentals(new HashSet<RentalEntity>()).build();
-        rental = new RentalEntity.Builder().withCost(new BigDecimal("123.00")).withEndDate(null).withStartDate(new Date())
+        RentalEntity rental = new RentalEntity.Builder().withCost(new BigDecimal("123.00")).withEndDate(to).withStartDate(from)
                 .withCar(car3)
-                .withClient(client).withEndOutpost(null).withStartOutpost(outpost)
+                .withClient(client).withEndOutpost(outpost).withStartOutpost(outpost)
                 .build();
         car3.addRental(rental);
         employee.addCar(car2);
         outpost.addStartRental(rental);
+        RentalEntity rental2 = new RentalEntity.Builder().withCost(new BigDecimal("123.00")).withEndDate(to2)
+                .withStartDate(from2)
+                .withCar(car2)
+                .withClient(client).withEndOutpost(outpost).withStartOutpost(outpost)
+                .build();
+        RentalEntity rental3 = new RentalEntity.Builder().withCost(new BigDecimal("123.00")).withEndDate(to3)
+                .withStartDate(from3)
+                .withCar(car2)
+                .withClient(client).withEndOutpost(outpost).withStartOutpost(outpost)
+                .build();
+        car2.addRental(rental2);
+        car2.addRental(rental3);
+
         outpostDao.save(outpost);
         car1 = carDao.save(car1);
         car2 = carDao.save(car2);
@@ -156,5 +177,36 @@ public class CarDaoImplTest {
         assertEquals(employeeQtyBefore, employeeDao.count());
         assertThat(rentalQtyBefore).isGreaterThan(rentalDao.count());
         assertEquals(clientQtyBefore, employeeDao.count());
+    }
+
+    @Test
+    public void shouldFindCarsRentedByMoreThan0Clients() {
+        //when
+        List<CarEntity> result = carDao.findCarRentByMoreThan(0);
+
+        //then
+        assertEquals(1, result.size());
+    }
+
+    @Test
+    public void shouldFindCarsRentsdInPerriod() {
+        //given
+        Date from = new GregorianCalendar(2018, 0, 1).getTime();
+        Date to = new GregorianCalendar(2018, 0, 2).getTime();
+
+        //when
+        List<CarEntity> result = carDao.findCarRentedInPeriod(from, to);
+
+        //then
+        assertEquals(1, result.size());
+        CarEntity car = result.get(0);
+        assertEquals(car3.getId(), car.getId());
+        assertEquals(car3.getProductionYear(), car.getProductionYear());
+        assertEquals(car3.getCarType(), car.getCarType());
+        assertEquals(car3.getPower(), car.getPower());
+        assertEquals(car3.getMileage(), car.getMileage());
+        assertEquals(car3.getColor(), car.getColor());
+        assertEquals(car3.getBrandName(), car.getBrandName());
+        assertEquals(car3.getEngineCapacity(), car.getEngineCapacity());
     }
 }
