@@ -1,6 +1,7 @@
 package com.capgemini.dao.impl;
 
 import com.capgemini.dao.EmployeeDao;
+import com.capgemini.dao.PositionDao;
 import com.capgemini.domain.AddressInTable;
 import com.capgemini.domain.EmployeeEntity;
 import com.capgemini.domain.OutpostEntity;
@@ -25,11 +26,13 @@ import static org.junit.Assert.assertEquals;
 @Transactional
 public class OutpostDaoImplTest {
     @Autowired
-    OutpostDaoImpl outpostRepository;
+    OutpostDaoImpl outpostDao;
     @Autowired
-    EmployeeDao employeeRepository;
+    EmployeeDao employeeDao;
     @PersistenceContext
     private EntityManager entityManager;
+    @Autowired
+    PositionDao positionDao;
 
     private EmployeeEntity employee;
     private OutpostEntity outpost;
@@ -37,23 +40,24 @@ public class OutpostDaoImplTest {
     @Before
     public void setup() {
         PositionEntity position = new PositionEntity.Builder().withName("Sprzedawca").build();
+        position = positionDao.save(position);
         employee = new EmployeeEntity.Builder().withBirthDate(new Date()).withFirstName("Jan").withLastName("Nowak")
                 .withPosition(position).build();
         AddressInTable address = new AddressInTable.Builder().withCity("city").withNo("no").withPostalCode("postal code")
                 .withStreet("street").build();
         outpost = new OutpostEntity.Builder().withAddress(address).withContactData("contact data").build();
 
-        outpost = outpostRepository.save(outpost);
-        employee = employeeRepository.save(employee);
+        outpost = outpostDao.save(outpost);
+        employee = employeeDao.save(employee);
     }
 
     @Test
     public void shouldAddEmployeeToOutpost() {
         //when
-        outpostRepository.addEmployeeToOutpost(outpost.getId(), employee);
+        outpostDao.addEmployeeToOutpost(outpost.getId(), employee);
 
         //then
-        OutpostEntity resultOutpost = outpostRepository.findOne(outpost.getId());
+        OutpostEntity resultOutpost = outpostDao.findOne(outpost.getId());
         assertEquals(1, resultOutpost.getEmployees().size());
         Iterator<EmployeeEntity> it = resultOutpost.getEmployees().iterator();
         assertEquals(employee.getId(), it.next().getId());
@@ -62,13 +66,13 @@ public class OutpostDaoImplTest {
     @Test
     public void shouldRemoveEmployeeFromOutpost() {
         //given
-        outpostRepository.addEmployeeToOutpost(outpost.getId(), employee);
+        outpostDao.addEmployeeToOutpost(outpost.getId(), employee);
 
         //when
-        outpostRepository.removeEmployeeFromOutpost(outpost.getId(), employee);
+        outpostDao.removeEmployeeFromOutpost(outpost.getId(), employee);
 
         //then
-        OutpostEntity resultOutpost = outpostRepository.findOne(outpost.getId());
+        OutpostEntity resultOutpost = outpostDao.findOne(outpost.getId());
         assertEquals(0, resultOutpost.getEmployees().size());
     }
 }

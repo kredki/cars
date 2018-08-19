@@ -3,7 +3,7 @@ package com.capgemini.service.impl;
 import com.capgemini.dao.CarDao;
 import com.capgemini.dao.EmployeeDao;
 import com.capgemini.dao.OutpostDao;
-import com.capgemini.dao.PositioDao;
+import com.capgemini.dao.PositionDao;
 import com.capgemini.domain.*;
 import com.capgemini.types.EmployeeSearchCriteriaTO;
 import com.capgemini.types.EmployeeTO;
@@ -40,7 +40,7 @@ public class EmployeeServiceImplTest {
     @Autowired
     private EmployeeDao employeeDao;
     @Autowired
-    private PositioDao positioDao;
+    private PositionDao positionDao;
 
     private OutpostEntity outpost;
     private OutpostEntity outpost2;
@@ -86,9 +86,9 @@ public class EmployeeServiceImplTest {
 
         car = carDao.save(car);
         car2 = carDao.save(car2);
-        positioDao.save(position);
-        position2 = positioDao.save(position2);
-        position2 = positioDao.save(position2);
+        positionDao.save(position);
+        position2 = positionDao.save(position2);
+        position2 = positionDao.save(position2);
         employee1 = employeeDao.save(employee1);
         employee2 = employeeDao.save(employee2);
         employee3 = employeeDao.save(employee3);

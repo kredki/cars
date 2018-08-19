@@ -35,7 +35,7 @@ public class CarDaoImplTest {
     @Autowired
     private RentalDao rentalDao;
     @Autowired
-    private PositioDao positioDao;
+    private PositionDao positionDao;
     @Autowired
     OutpostDao outpostDao;
 
@@ -50,7 +50,7 @@ public class CarDaoImplTest {
     @Before
     public void init() {
         position = new PositionEntity("Sprzedawca");
-        positioDao.save(position);
+        positionDao.save(position);
         AddressInTable address = new AddressInTable("street", "no", "city", "postal code");
         outpost = new OutpostEntity(address, "contactData");
         employee = new EmployeeEntity("Jan", "Kowalski", new Date(), outpost,
@@ -142,7 +142,7 @@ public class CarDaoImplTest {
     public void shouldRemoveCarAndRentals() {
         //given
         long carQtyBefore = carDao.count();
-        long positionQtyBefore = positioDao.count();
+        long positionQtyBefore = positionDao.count();
         long employeeQtyBefore = employeeDao.count();
         long rentalQtyBefore = rentalDao.count();
         long clientQtyBefore = clientDAO.count();
@@ -152,7 +152,7 @@ public class CarDaoImplTest {
 
         //then
         assertEquals(carQtyBefore - 1, carDao.count());
-        assertEquals(positionQtyBefore, positioDao.count());
+        assertEquals(positionQtyBefore, positionDao.count());
         assertEquals(employeeQtyBefore, employeeDao.count());
         assertThat(rentalQtyBefore).isGreaterThan(rentalDao.count());
         assertEquals(clientQtyBefore, employeeDao.count());

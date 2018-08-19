@@ -5,5 +5,5 @@ import com.capgemini.domain.PositionEntity;
 /**
  * Position DAO
  */
-public interface PositioDao extends Dao<PositionEntity, Long>  {
+public interface PositionDao extends Dao<PositionEntity, Long>  {
 }
