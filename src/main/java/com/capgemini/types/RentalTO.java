@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * TO for rental
@@ -17,6 +18,14 @@ public class RentalTO {
     private Date startDate;
     private Date endDate;
     private BigDecimal cost;
+
+    public Date getStartDate() {
+        return new GregorianCalendar(startDate.getYear()+1900, startDate.getMonth(), startDate.getDay()).getTime();
+    }
+
+    public Date getEndDate() {
+        return new GregorianCalendar(endDate.getYear()+1900, endDate.getMonth(), endDate.getDay()).getTime();
+    }
 
     public RentalTO(Builder builder) {
         this.id = builder.id;
@@ -37,12 +46,14 @@ public class RentalTO {
         }
 
         public Builder withStartDate(Date startDate) {
-            this.startDate = startDate;
+            this.startDate = new GregorianCalendar(startDate.getYear()+1900, startDate.getMonth(), startDate.getDay())
+                    .getTime();
             return this;
         }
 
         public Builder withEndDate(Date endDate) {
-            this.endDate = endDate;
+            this.endDate = new GregorianCalendar(endDate.getYear()+1900, endDate.getMonth(), endDate.getDay())
+                    .getTime();
             return this;
         }
 

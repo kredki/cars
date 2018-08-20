@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * TO for client
@@ -19,6 +20,10 @@ public class ClientTO {
     private String telephone;
     private String cardNo;
     private String email;
+
+    public Date getBirthdate() {
+        return new GregorianCalendar(birthdate.getYear()+1900, birthdate.getMonth(), birthdate.getDay()).getTime();
+    }
 
     public ClientTO(Builder builder) {
         this.id = builder.id;
@@ -55,7 +60,8 @@ public class ClientTO {
         }
 
         public Builder withBirthdate(Date birthdate) {
-            this.birthdate = birthdate;
+            this.birthdate = new GregorianCalendar(birthdate.getYear()+1900, birthdate.getMonth(), birthdate.getDay())
+                    .getTime();
             return this;
         }
 
