@@ -5,6 +5,7 @@ import com.capgemini.Exceptions.IncorrectObjectException;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,7 +49,7 @@ public class EmployeeEntity implements Serializable {
                           PositionEntity position, Set<CarEntity> cars) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthDate = birthDate;
+        this.birthDate = new GregorianCalendar(birthDate.getYear()+1900, birthDate.getMonth(), birthDate.getDay()).getTime();
         this.outpost = outpost;
         this.position = position;
         this.cars = cars;
@@ -58,7 +59,7 @@ public class EmployeeEntity implements Serializable {
                           PositionEntity position) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthDate = birthDate;
+        this.birthDate = new GregorianCalendar(birthDate.getYear()+1900, birthDate.getMonth(), birthDate.getDay()).getTime();
         this.outpost = outpost;
         this.position = position;
         this.cars = new HashSet<>();
@@ -89,11 +90,12 @@ public class EmployeeEntity implements Serializable {
     }
 
     public Date getBirthDate() {
-        return birthDate;
+        return new GregorianCalendar(birthDate.getYear()+1900, birthDate.getMonth(), birthDate.getDay()).getTime();
     }
 
     public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+        this.birthDate = new GregorianCalendar(birthDate.getYear()+1900, birthDate.getMonth(), birthDate.getDay())
+                .getTime();
     }
 
     public OutpostEntity getOutpost() {
@@ -160,7 +162,8 @@ public class EmployeeEntity implements Serializable {
         }
 
         public Builder withBirthDate(Date birthDate) {
-            this.birthDate = birthDate;
+            this.birthDate = new GregorianCalendar(birthDate.getYear()+1900, birthDate.getMonth(), birthDate.getDay())
+                    .getTime();
             return this;
         }
 

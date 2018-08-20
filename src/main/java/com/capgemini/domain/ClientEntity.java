@@ -5,6 +5,7 @@ import com.capgemini.Exceptions.IncorrectObjectException;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,7 +43,7 @@ public class ClientEntity implements Serializable {
                         String email, Set<RentalEntity> rentals) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthdate = birthdate;
+        this.birthdate = new GregorianCalendar(birthdate.getYear()+1900, birthdate.getMonth(), birthdate.getDay()).getTime();
         this.telephone = telephone;
         this.cardNo = cardNo;
         this.email = email;
@@ -74,11 +75,11 @@ public class ClientEntity implements Serializable {
     }
 
     public Date getBirthdate() {
-        return birthdate;
+        return new GregorianCalendar(birthdate.getYear()+1900, birthdate.getMonth(), birthdate.getDay()).getTime();
     }
 
     public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
+        this.birthdate = new GregorianCalendar(birthdate.getYear()+1900, birthdate.getMonth(), birthdate.getDay()).getTime();
     }
 
     public String getTelephone() {
@@ -151,7 +152,7 @@ public class ClientEntity implements Serializable {
         }
 
         public Builder withBirthdate(Date birthdate) {
-            this.birthdate = birthdate;
+            this.birthdate = new GregorianCalendar(birthdate.getYear()+1900, birthdate.getMonth(), birthdate.getDay()).getTime();
             return this;
         }
 

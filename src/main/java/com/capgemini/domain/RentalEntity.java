@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Entity for rental.
@@ -45,8 +46,8 @@ public class RentalEntity implements Serializable {
     }
 
     public RentalEntity(Date startDate, Date endDate, BigDecimal cost) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDate = new GregorianCalendar(startDate.getYear(), startDate.getMonth(), startDate.getDay()).getTime();
+        this.endDate = new GregorianCalendar(endDate.getYear(), endDate.getMonth(), endDate.getDay()).getTime();
         this.cost = cost;
     }
 
@@ -59,19 +60,19 @@ public class RentalEntity implements Serializable {
     }
 
     public Date getStartDate() {
-        return startDate;
+        return new GregorianCalendar(startDate.getYear()+1900, startDate.getMonth(), startDate.getDay()).getTime();
     }
 
     public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+        this.startDate = new GregorianCalendar(startDate.getYear()+1900, startDate.getMonth(), startDate.getDay()).getTime();
     }
 
     public Date getEndDate() {
-        return endDate;
+        return new GregorianCalendar(endDate.getYear()+1900, endDate.getMonth(), endDate.getDay()).getTime();
     }
 
     public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+        this.endDate = new GregorianCalendar(endDate.getYear()+1900, endDate.getMonth(), endDate.getDay()).getTime();
     }
 
     public BigDecimal getCost() {
@@ -142,12 +143,12 @@ public class RentalEntity implements Serializable {
         }
 
         public Builder withStartDate(Date startDate) {
-            this.startDate = startDate;
+            this.startDate = new GregorianCalendar(startDate.getYear()+1900, startDate.getMonth(), startDate.getDay()).getTime();
             return this;
         }
 
         public Builder withEndDate(Date endDate) {
-            this.endDate = endDate;
+            this.endDate = new GregorianCalendar(endDate.getYear()+1900, endDate.getMonth(), endDate.getDay()).getTime();
             return this;
         }
 

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 /**
  * Address embedded in entity.
@@ -17,7 +18,7 @@ import javax.persistence.Embeddable;
 @AllArgsConstructor
 @Getter
 @Setter
-public class AddressInTable {
+public class AddressInTable implements Serializable {
     @Column(name = "STREET", nullable = false, length = 50)
     String street;
     @Column(name = "NO", nullable = false, length = 50)

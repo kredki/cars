@@ -31,12 +31,11 @@ public class OutpostDaoImpl extends AbstractDao<OutpostEntity, Long> implements 
      */
     @Override
     public void removeEmployeeFromOutpost(long outpostId, EmployeeEntity employee) {
-        long employeeId = employee.getId();
         TypedQuery<OutpostEntity> query = entityManager.createQuery(
                 "select o from OutpostEntity o where o.id = :outpostId", OutpostEntity.class);
         query.setParameter("outpostId", outpostId);
         OutpostEntity outpost = query.getSingleResult();
         outpost.removeEmployee(employee);
-        entityManager.persist(outpost);
+        //entityManager.persist(outpost);
     }
 }
