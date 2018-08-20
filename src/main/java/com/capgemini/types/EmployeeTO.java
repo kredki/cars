@@ -22,6 +22,11 @@ public class EmployeeTO {
         return new GregorianCalendar(birthDate.getYear()+1900, birthDate.getMonth(), birthDate.getDay()).getTime();
     }
 
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = new GregorianCalendar(birthDate.getYear()+1900, birthDate.getMonth(), birthDate.getDay())
+                .getTime();
+    }
+
     public EmployeeTO(Builder builder) {
         this.id = builder.id;
         this.firstName = builder.firstName;

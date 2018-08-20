@@ -25,6 +25,11 @@ public class ClientTO {
         return new GregorianCalendar(birthdate.getYear()+1900, birthdate.getMonth(), birthdate.getDay()).getTime();
     }
 
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = new GregorianCalendar(birthdate.getYear()+1900, birthdate.getMonth(), birthdate.getDay())
+                .getTime();
+    }
+
     public ClientTO(Builder builder) {
         this.id = builder.id;
         this.firstName = builder.firstName;

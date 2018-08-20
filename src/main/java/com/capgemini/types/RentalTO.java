@@ -23,8 +23,17 @@ public class RentalTO {
         return new GregorianCalendar(startDate.getYear()+1900, startDate.getMonth(), startDate.getDay()).getTime();
     }
 
+    public void setStartDate(Date startDate) {
+        this.startDate = new GregorianCalendar(startDate.getYear()+1900, startDate.getMonth(), startDate.getDay())
+                .getTime();
+    }
+
     public Date getEndDate() {
         return new GregorianCalendar(endDate.getYear()+1900, endDate.getMonth(), endDate.getDay()).getTime();
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = new GregorianCalendar(endDate.getYear()+1900, endDate.getMonth(), endDate.getDay()).getTime();
     }
 
     public RentalTO(Builder builder) {
