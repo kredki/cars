@@ -7,6 +7,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Entity for outpost.
+ */
 @Entity
 @Table(name = "OUTPOSTS")
 public class OutpostEntity implements Serializable {

@@ -9,15 +9,15 @@ import com.capgemini.domain.OutpostEntity;
 public interface OutpostDao extends Dao<OutpostEntity, Long> {
     /**
      * Add employee to outpost.
-     * @param outpostId
-     * @param employee
+     * @param outpostId Outpost id.
+     * @param employee Employee to add.
      */
     public void addEmployeeToOutpost(long outpostId, EmployeeEntity employee);
 
     /**
      * Remove employee from outpost.
-     * @param outpostId
-     * @param employee
+     * @param outpostId Outpost id.
+     * @param employee Employee to remove.
      */
     public void removeEmployeeFromOutpost(long outpostId, EmployeeEntity employee);
 }

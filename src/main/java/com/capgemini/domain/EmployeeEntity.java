@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Entity for employee.
+ */
 @Entity
 @Table(name = "EMPLOYEES")
 public class EmployeeEntity implements Serializable {

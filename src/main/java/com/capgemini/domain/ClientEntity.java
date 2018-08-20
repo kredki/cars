@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Entity for client.
+ */
 @Entity
 @Table(name = "CLIENTS")
 public class ClientEntity implements Serializable {

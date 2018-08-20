@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  */
 public class ClientMapper {
     /**
-     *
+     * Map entity to TO.
      * @param client Object to map.
      * @return Mapped object.
      */
@@ -26,7 +26,7 @@ public class ClientMapper {
     }
 
     /**
-     *
+     * Map TO to entity.
      * @param client Object to map.
      * @return Mapped object.
      */
@@ -41,7 +41,7 @@ public class ClientMapper {
     }
 
     /**
-     *
+     * Map set of entities to set of TOs.
      * @param clients Objects to map.
      * @return Mapped objects.
      */
@@ -50,7 +50,7 @@ public class ClientMapper {
     }
 
     /**
-     *
+     * Map set of TOs to set of entities.
      * @param clients Objects to map.
      * @return Mapped objects.
      */

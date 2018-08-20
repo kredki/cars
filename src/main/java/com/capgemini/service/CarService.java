@@ -9,22 +9,22 @@ import java.util.List;
  */
 public interface CarService {
     /**
-     *
-     * @param type
+     * Find cars by requested type.
+     * @param type String containing type of car.
      * @return Cars of requested type.
      */
     List<CarTO> findCarByType(String type);
 
     /**
-     *
-     * @param brand
+     * Find cars by requested brand.
+     * @param brand String containing brand of car.
      * @return Cars of requested brand.
      */
     List<CarTO> findCarByBrand(String brand);
 
     /**
-     *
-     * @param caretakerId
+     * Find cars assigned to equested employee.
+     * @param caretakerId Employee id.
      * @return Cars assigned to requested caretaker.
      */
     List<CarTO> findCarByCaretaker(long caretakerId);

@@ -33,8 +33,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
-     *
-     * @param outpostId
+     * Find employee assigned to requested outpost.
+     * @param outpostId Outpost id.
      * @return employees assigned to outpost
      */
     @Override
@@ -44,10 +44,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
-     *
-     * @param outpostId
-     * @param carId
-     * @return employees assigened to outpost whom are assigned to specified car
+     * Find employee assigned to car and outpost.
+     * @param outpostId Outpost id.
+     * @param carId Car id.
+     * @return employees assigned to outpost whom are assigned to specified car
      */
     @Override
     public List<EmployeeTO> findCaretakerByOutpost(long outpostId, long carId) {

@@ -23,8 +23,8 @@ public class OutpostServiceImpl implements OutpostService {
 
     /**
      * add employee to outpost.
-     * @param outpostId
-     * @param employeeId
+     * @param outpostId Outpost id.
+     * @param employeeId Employee id.
      */
     @Override
     public void addEmployee(long outpostId, long employeeId) {
@@ -33,9 +33,9 @@ public class OutpostServiceImpl implements OutpostService {
     }
 
     /**
-     * Remove emloyee from outpost.
-     * @param outpostId
-     * @param employeeId
+     * Remove employee from outpost.
+     * @param outpostId Outpost id.
+     * @param employeeId Employee id.
      */
     @Override
     public void removeEmployee(long outpostId, long employeeId) {

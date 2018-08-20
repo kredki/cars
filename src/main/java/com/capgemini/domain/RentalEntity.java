@@ -7,6 +7,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Entity for rental.
+ */
 @Entity
 @Table(name = "RENTALS")
 public class RentalEntity implements Serializable {

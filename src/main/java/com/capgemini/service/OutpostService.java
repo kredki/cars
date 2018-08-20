@@ -6,15 +6,15 @@ package com.capgemini.service;
 public interface OutpostService {
     /**
      * add employee to outpost.
-     * @param outpostId
-     * @param employeeId
+     * @param outpostId Outpost id.
+     * @param employeeId Employee id.
      */
     public void addEmployee(long outpostId, long employeeId);
 
     /**
-     * Remove emloyee from outpost.
-     * @param outpostId
-     * @param employeeId
+     * Remove employee from outpost.
+     * @param outpostId Outpost id.
+     * @param employeeId Employee id.
      */
     public void removeEmployee(long outpostId, long employeeId);
 }

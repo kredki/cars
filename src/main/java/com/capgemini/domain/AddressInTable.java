@@ -9,6 +9,9 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+/**
+ * Address embedded in entity.
+ */
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor

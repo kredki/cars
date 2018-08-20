@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  */
 public class OutpostMapper {
     /**
-     *
+     * Map entity to TO.
      * @param outpost Object to map.
      * @return Mapped object.
      */
@@ -28,7 +28,7 @@ public class OutpostMapper {
     }
 
     /**
-     *
+     * Map TO to entity.
      * @param outpost Object to map.
      * @return Mapped object.
      */
@@ -36,14 +36,14 @@ public class OutpostMapper {
         if (outpost == null) {
             return null;
         }
-        AddressInTable address = AddressMapper.toEntity(outpost.getAddress());
+        AddressInTable address = AddressMapper.toInTable(outpost.getAddress());
 
         return new OutpostEntity.Builder().withAddress(address).withContactData(outpost.getContactData())
                 .withId(outpost.getId()).build();
     }
 
     /**
-     *
+     * Map set of entities to set of TOs.
      * @param outposts Objects to map.
      * @return Mapped objects.
      */
@@ -52,7 +52,7 @@ public class OutpostMapper {
     }
 
     /**
-     *
+     * Map set of TOs to set of entities.
      * @param outposts Objects to map.
      * @return Mapped objects.
      */

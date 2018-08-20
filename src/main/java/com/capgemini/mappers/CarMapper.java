@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  */
 public class CarMapper {
     /**
-     *
+     * Map entity to TO.
      * @param car Object to map.
      * @return Mapped object.
      */
@@ -26,7 +26,7 @@ public class CarMapper {
     }
 
     /**
-     *
+     * Map TO to entity.
      * @param car Object to map.
      * @return Mapped object.
      */
@@ -41,7 +41,7 @@ public class CarMapper {
     }
 
     /**
-     *
+     * Map set of entities to set of TOs.
      * @param cars Objects to map.
      * @return Mapped objects.
      */
@@ -50,7 +50,7 @@ public class CarMapper {
     }
 
     /**
-     *
+     * Map set of TOs to set of entities.
      * @param cars Objects to map.
      * @return Mapped objects.
      */
@@ -59,7 +59,7 @@ public class CarMapper {
     }
 
     /**
-     *
+     * Map list of entities to list of TOs.
      * @param cars Objects to map.
      * @return Mapped objects.
      */
@@ -68,7 +68,7 @@ public class CarMapper {
     }
 
     /**
-     *
+     * Map list of TOs to list of entities.
      * @param cars Objects to map.
      * @return Mapped objects.
      */

@@ -10,17 +10,17 @@ import java.util.List;
  */
 public interface EmployeeService {
     /**
-     *
-     * @param outpostId
+     * Find employee assigned to requested outpost.
+     * @param outpostId Outpost id.
      * @return employees assigned to outpost
      */
     public List<EmployeeTO> findEmployeeByOutpost(long outpostId);
 
     /**
-     *
-     * @param outpostId
-     * @param carId
-     * @return employees assigened to outpost whom are assigned to specified car
+     * Find employee assigned to car and outpost.
+     * @param outpostId Outpost id.
+     * @param carId Car id.
+     * @return employees assigned to outpost whom are assigned to specified car
      */
     public List<EmployeeTO> findCaretakerByOutpost(long outpostId, long carId);
 

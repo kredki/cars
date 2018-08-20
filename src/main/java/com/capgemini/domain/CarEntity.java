@@ -7,6 +7,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Entity for car
+ */
 @Entity
 @Table(name = "CARS")
 public class CarEntity implements Serializable {

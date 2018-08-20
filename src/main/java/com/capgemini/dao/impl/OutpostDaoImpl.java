@@ -11,8 +11,8 @@ import javax.persistence.TypedQuery;
 public class OutpostDaoImpl extends AbstractDao<OutpostEntity, Long> implements OutpostDao {
     /**
      * Add employee to outpost.
-     * @param outpostId
-     * @param employee
+     * @param outpostId Outpost id.
+     * @param employee Employee to add.
      */
     @Override
     public void addEmployeeToOutpost(long outpostId, EmployeeEntity employee) {
@@ -26,8 +26,8 @@ public class OutpostDaoImpl extends AbstractDao<OutpostEntity, Long> implements 
 
     /**
      * Remove employee from outpost.
-     * @param outpostId
-     * @param employee
+     * @param outpostId Outpost id.
+     * @param employee Employee to remove.
      */
     @Override
     public void removeEmployeeFromOutpost(long outpostId, EmployeeEntity employee) {

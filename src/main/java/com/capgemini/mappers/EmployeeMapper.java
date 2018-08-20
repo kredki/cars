@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  */
 public class EmployeeMapper {
     /**
-     *
+     * Map entity to TO.
      * @param employee Object to map.
      * @return Mapped object.
      */
@@ -26,7 +26,7 @@ public class EmployeeMapper {
     }
 
     /**
-     *
+     * Map TO to entity.
      * @param employee Object to map.
      * @return Mapped object.
      */
@@ -40,7 +40,7 @@ public class EmployeeMapper {
     }
 
     /**
-     *
+     * Map set of entities to set of TOs.
      * @param employees Objects to map.
      * @return Mapped objects.
      */
@@ -49,7 +49,7 @@ public class EmployeeMapper {
     }
 
     /**
-     *
+     * Map set of TOs to set of entities.
      * @param employees Objects to map.
      * @return Mapped objects.
      */
@@ -58,7 +58,7 @@ public class EmployeeMapper {
     }
 
     /**
-     *
+     * Map list of entities to list of TOs.
      * @param employees Objects to map.
      * @return Mapped objects.
      */
@@ -67,7 +67,7 @@ public class EmployeeMapper {
     }
 
     /**
-     *
+     * Map list of TOs to list of entities.
      * @param employees Objects to map.
      * @return Mapped objects.
      */

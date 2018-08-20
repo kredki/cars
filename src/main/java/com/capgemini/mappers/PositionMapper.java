@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  */
 public class PositionMapper {
     /**
-     *
+     * Map entity to TO.
      * @param position Object to map.
      * @return Mapped object.
      */
@@ -24,7 +24,7 @@ public class PositionMapper {
     }
 
     /**
-     *
+     * Map TO to entity.
      * @param position Object to map.
      * @return Mapped object.
      */
@@ -37,7 +37,7 @@ public class PositionMapper {
     }
 
     /**
-     *
+     * Map set of entities to set of TOs.
      * @param positions Objects to map.
      * @return Mapped objects.
      */
@@ -46,7 +46,7 @@ public class PositionMapper {
     }
 
     /**
-     *
+     * Map set of TOs to set of entities.
      * @param positions Objects to map.
      * @return Mapped objects.
      */

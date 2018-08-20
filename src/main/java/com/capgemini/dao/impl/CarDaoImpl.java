@@ -16,8 +16,8 @@ import java.util.List;
 public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
 
     /**
-     *
-     * @param type
+     * Find cars of requested type.
+     * @param type String containing type of car.
      * @return Cars of requested type.
      */
     @Override
@@ -29,8 +29,8 @@ public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
     }
 
     /**
-     *
-     * @param brand
+     * Find cars of requested brand.
+     * @param brand String containing brand of car.
      * @return Cars of requested brand.
      */
     @Override
@@ -42,8 +42,8 @@ public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
     }
 
     /**
-     *
-     * @param caretakerId
+     * Find cars assigned to requested employee.
+     * @param caretakerId Employee id.
      * @return Cars assigned to requested caretaker.
      */
     @Override
@@ -55,6 +55,11 @@ public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
         return query.getResultList();
     }
 
+    /**
+     * Find cars that are rented by more than requested number of different clients.
+     * @param clientQty Quantity of clients - 1 that should rent car.
+     * @return Cars rented by more than requested clients number.
+     */
     @Override
     public List<CarEntity> findCarRentByMoreThan(long clientQty) {
         TypedQuery<CarEntity> query = entityManager.createQuery(
@@ -67,6 +72,12 @@ public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
         return query.getResultList();
     }
 
+    /**
+     * Find cars that was rented and returned in given period.
+     * @param from Date of beginning of requested period.
+     * @param to Date of end of requested period.
+     * @return Cars rented in given period.
+     */
     @Override
     public List<CarEntity> findCarRentedInPeriod(Date from, Date to) {
         TypedQuery<CarEntity> query = entityManager.createQuery(

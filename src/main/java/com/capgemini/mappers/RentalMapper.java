@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  */
 public class RentalMapper {
     /**
-     *
+     * Map entity to TO.
      * @param rental Object to map.
      * @return Mapped object.
      */
@@ -25,7 +25,7 @@ public class RentalMapper {
     }
 
     /**
-     *
+     * Map TO to entity.
      * @param rental Object to map.
      * @return Mapped object.
      */
@@ -39,7 +39,7 @@ public class RentalMapper {
     }
 
     /**
-     *
+     * Map set of entities to set of TOs.
      * @param rentals Objects to map.
      * @return Mapped objects.
      */
@@ -48,7 +48,7 @@ public class RentalMapper {
     }
 
     /**
-     *
+     * Map set of TOs to set of entities.
      * @param rentals Objects to map.
      * @return Mapped objects.
      */

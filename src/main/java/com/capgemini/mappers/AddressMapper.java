@@ -8,7 +8,7 @@ import com.capgemini.types.AddressTO;
  */
 public class AddressMapper {
     /**
-     *
+     * Map AddressInTable to TO.
      * @param address Object to map.
      * @return Mapped object.
      */
@@ -22,11 +22,11 @@ public class AddressMapper {
     }
 
     /**
-     *
+     * Map TO to AddressInTable.
      * @param address Object to map.
      * @return Mapped object.
      */
-    public static AddressInTable toEntity(AddressTO address) {
+    public static AddressInTable toInTable(AddressTO address) {
         if (address == null) {
             return null;
         }

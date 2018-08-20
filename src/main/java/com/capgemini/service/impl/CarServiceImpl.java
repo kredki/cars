@@ -23,8 +23,8 @@ public class CarServiceImpl implements CarService {
     }
 
     /**
-     *
-     * @param type
+     * Find cars by requested type.
+     * @param type String containing type of car.
      * @return Cars of requested type.
      */
     @Override
@@ -34,8 +34,8 @@ public class CarServiceImpl implements CarService {
     }
 
     /**
-     *
-     * @param brand
+     * Find cars by requested brand.
+     * @param brand String containing brand of car.
      * @return Cars of requested brand.
      */
     @Override
@@ -45,8 +45,8 @@ public class CarServiceImpl implements CarService {
     }
 
     /**
-     *
-     * @param caretakerId
+     * Find cars assigned to equested employee.
+     * @param caretakerId Employee id.
      * @return Cars assigned to requested caretaker.
      */
     @Override
