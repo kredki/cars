@@ -77,6 +77,10 @@ public class CarDaoImplTest {
         ClientEntity client = new ClientEntity.Builder().withBirthdate(new Date()).withCardNo("no").withEmail("mail")
                 .withFirstName("first name").withLastName("last name").withTelephone("tel").build();
         client = clientDAO.save(client);
+        ClientEntity client2 = new ClientEntity.Builder().withBirthdate(new Date()).withCardNo("no").withEmail("mail")
+                .withFirstName("first name").withLastName("last name").withTelephone("tel").build();
+        client2 = clientDAO.save(client2);
+
         car3 = new CarEntity.CarEntityBuilder().withBrandName("VW").withCarType("some type")
                 .withEmployee(employee)
                 .withEngineCapacity(1500).withMileage(30000).withPower(100).withProductionYear(2014).withColor("red")
@@ -91,7 +95,7 @@ public class CarDaoImplTest {
         RentalEntity rental2 = new RentalEntity.Builder().withCost(new BigDecimal("123.00")).withEndDate(to2)
                 .withStartDate(from2)
                 .withCar(car2)
-                .withClient(client).withEndOutpost(outpost).withStartOutpost(outpost)
+                .withClient(client2).withEndOutpost(outpost).withStartOutpost(outpost)
                 .build();
         RentalEntity rental3 = new RentalEntity.Builder().withCost(new BigDecimal("123.00")).withEndDate(to3)
                 .withStartDate(from3)
@@ -176,13 +180,13 @@ public class CarDaoImplTest {
         assertEquals(positionQtyBefore, positionDao.count());
         assertEquals(employeeQtyBefore, employeeDao.count());
         assertThat(rentalQtyBefore).isGreaterThan(rentalDao.count());
-        assertEquals(clientQtyBefore, employeeDao.count());
+        assertEquals(clientQtyBefore, clientDAO.count());
     }
 
     @Test
-    public void shouldFindCarsRentedByMoreThan0Clients() {
+    public void shouldFindCarsRentedByMoreThan1Clients() {
         //when
-        List<CarEntity> result = carDao.findCarRentByMoreThan(0);
+        List<CarEntity> result = carDao.findCarRentByMoreThan(1);
 
         //then
         assertEquals(1, result.size());

@@ -35,7 +35,7 @@ public interface CarDao extends Dao<CarEntity, Long> {
      * @param clientQty Quantity of clients - 1 that should rent car.
      * @return Cars rented by more than requested clients number.
      */
-    List<CarEntity> findCarRentByMoreThan(int clientQty);
+    List<CarEntity> findCarRentByMoreThan(long clientQty);
 
     /**
      *
