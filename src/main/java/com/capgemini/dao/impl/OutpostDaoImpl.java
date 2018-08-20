@@ -16,13 +16,12 @@ public class OutpostDaoImpl extends AbstractDao<OutpostEntity, Long> implements 
      */
     @Override
     public void addEmployeeToOutpost(long outpostId, EmployeeEntity employee) {
-        long employeeId = employee.getId();
         TypedQuery<OutpostEntity> query = entityManager.createQuery(
-                "select o from OutpostEntity o where o.id = :employeeId", OutpostEntity.class);
-        query.setParameter("employeeId", employeeId);
+                "select o from OutpostEntity o where o.id = :outpostId", OutpostEntity.class);
+        query.setParameter("outpostId", outpostId);
         OutpostEntity outpost = query.getSingleResult();
         outpost.addEmployee(employee);
-        entityManager.persist(outpost);
+        //entityManager.persist(outpost);
     }
 
     /**
@@ -34,8 +33,8 @@ public class OutpostDaoImpl extends AbstractDao<OutpostEntity, Long> implements 
     public void removeEmployeeFromOutpost(long outpostId, EmployeeEntity employee) {
         long employeeId = employee.getId();
         TypedQuery<OutpostEntity> query = entityManager.createQuery(
-                "select o from OutpostEntity o where o.id = :employeeId", OutpostEntity.class);
-        query.setParameter("employeeId", employeeId);
+                "select o from OutpostEntity o where o.id = :outpostId", OutpostEntity.class);
+        query.setParameter("outpostId", outpostId);
         OutpostEntity outpost = query.getSingleResult();
         outpost.removeEmployee(employee);
         entityManager.persist(outpost);
