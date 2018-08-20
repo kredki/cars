@@ -20,6 +20,7 @@ import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
@@ -224,5 +225,23 @@ public class EmployeeServiceImplTest {
         List<Long> ids = result.stream().map(x -> x.getId()).collect(Collectors.toList());
         assertTrue(ids.contains(employee4.getId()));
         assertTrue(ids.contains(employee5.getId()));
+    }
+
+    @Test
+    public void shouldAddCar() {
+        //given
+        Long employee5Id = employee5.getId();
+        int employeeCarsSize = employee5.getCars().size();
+        Long carId = car.getId();
+
+        //when
+        employeeService.addCar(employee5Id, carId);
+
+        //then
+        EmployeeEntity employee = employeeDao.findOne(employee5Id);
+        Set<CarEntity> cars = employee.getCars();
+        assertEquals(employeeCarsSize + 1, cars.size());
+        List<Long> ids = cars.stream().map(x -> x.getId()).collect(Collectors.toList());
+        assertTrue(ids.contains(carId));
     }
 }

@@ -87,11 +87,4 @@ public class CarDaoImpl extends AbstractDao<CarEntity, Long> implements CarDao {
         query.setParameter("to", to);
         return query.getResultList();
     }
-
-    /**
-     * Deleta all cars.
-     */
-    public void deleteAll() {
-        entityManager.createQuery("delete from CarEntity", CarEntity.class).executeUpdate();
-    }
 }
